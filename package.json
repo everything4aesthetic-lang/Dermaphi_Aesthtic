@@ -1,0 +1,15 @@
+{
+  "name": "dermaphi-aesthetics",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.cjs",
+    "dev": "node build.cjs && node dev.cjs"
+  },
+  "dependencies": {
+    "vgpu": "^0.6.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

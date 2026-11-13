@@ -1,0 +1,5 @@
+{
+  "framework": null,
+  "buildCommand": "node build.cjs && node build-vercel.cjs",
+  "outputDirectory": "dist"
+}
