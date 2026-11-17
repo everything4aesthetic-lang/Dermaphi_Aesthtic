@@ -7633,39 +7633,72 @@ html[data-site-loaded] .site-loader-inner {
 }
 
 .standard-pillar-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(237, 203, 137, 0.32);
-  border-radius: 16px;
-  padding: 24px 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  position: relative;
+  background: linear-gradient(160deg, rgba(62, 21, 40, 0.58) 0%, rgba(28, 9, 18, 0.82) 100%);
+  border: 1px solid rgba(237, 203, 137, 0.22);
+  border-radius: 22px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 30px rgba(12, 3, 8, 0.42);
+  backdrop-filter: blur(14px);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
 }
 
 .standard-pillar-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.09);
-  border-color: #edcb89;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  transform: translateY(-5px);
+  background: linear-gradient(160deg, rgba(78, 26, 50, 0.72) 0%, rgba(36, 12, 23, 0.92) 100%);
+  border-color: rgba(237, 203, 137, 0.65);
+  box-shadow: 0 18px 40px rgba(12, 3, 8, 0.55), 0 0 28px rgba(237, 203, 137, 0.18);
 }
 
-.pillar-icon {
-  font-size: 28px;
-  margin-bottom: 12px;
+.pillar-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pillar-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 30%, rgba(237, 203, 137, 0.22), rgba(72, 24, 44, 0.5));
+  border: 1px solid rgba(237, 203, 137, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #edcb89;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.standard-pillar-card:hover .pillar-icon-badge {
+  border-color: #edcb89;
+  box-shadow: 0 0 20px rgba(237, 203, 137, 0.4);
+  transform: scale(1.06);
+}
+
+.pillar-card-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #edcb89;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
 }
 
 .standard-pillar-card h3 {
-  font-size: 19px;
-  color: #fff6ee;
-  margin: 0 0 8px;
+  font: 500 20px/1.25 var(--serif);
+  color: #ffffff;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
 }
 
 .standard-pillar-card p {
   font-size: 13.5px;
   color: #e5cbd4;
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -9548,39 +9581,72 @@ html[data-site-loaded] .site-loader-inner {
 }
 
 .standard-pillar-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(237, 203, 137, 0.32);
-  border-radius: 16px;
-  padding: 24px 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  position: relative;
+  background: linear-gradient(160deg, rgba(62, 21, 40, 0.58) 0%, rgba(28, 9, 18, 0.82) 100%);
+  border: 1px solid rgba(237, 203, 137, 0.22);
+  border-radius: 22px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 30px rgba(12, 3, 8, 0.42);
+  backdrop-filter: blur(14px);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
 }
 
 .standard-pillar-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.09);
-  border-color: #edcb89;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  transform: translateY(-5px);
+  background: linear-gradient(160deg, rgba(78, 26, 50, 0.72) 0%, rgba(36, 12, 23, 0.92) 100%);
+  border-color: rgba(237, 203, 137, 0.65);
+  box-shadow: 0 18px 40px rgba(12, 3, 8, 0.55), 0 0 28px rgba(237, 203, 137, 0.18);
 }
 
-.pillar-icon {
-  font-size: 28px;
-  margin-bottom: 12px;
+.pillar-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pillar-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 30%, rgba(237, 203, 137, 0.22), rgba(72, 24, 44, 0.5));
+  border: 1px solid rgba(237, 203, 137, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #edcb89;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.standard-pillar-card:hover .pillar-icon-badge {
+  border-color: #edcb89;
+  box-shadow: 0 0 20px rgba(237, 203, 137, 0.4);
+  transform: scale(1.06);
+}
+
+.pillar-card-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #edcb89;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
 }
 
 .standard-pillar-card h3 {
-  font-size: 19px;
-  color: #fff6ee;
-  margin: 0 0 8px;
+  font: 500 20px/1.25 var(--serif);
+  color: #ffffff;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
 }
 
 .standard-pillar-card p {
   font-size: 13.5px;
   color: #e5cbd4;
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -11494,39 +11560,72 @@ html[data-site-loaded] .site-loader-inner {
 }
 
 .standard-pillar-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(237, 203, 137, 0.32);
-  border-radius: 16px;
-  padding: 24px 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  position: relative;
+  background: linear-gradient(160deg, rgba(62, 21, 40, 0.58) 0%, rgba(28, 9, 18, 0.82) 100%);
+  border: 1px solid rgba(237, 203, 137, 0.22);
+  border-radius: 22px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 30px rgba(12, 3, 8, 0.42);
+  backdrop-filter: blur(14px);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
 }
 
 .standard-pillar-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.09);
-  border-color: #edcb89;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  transform: translateY(-5px);
+  background: linear-gradient(160deg, rgba(78, 26, 50, 0.72) 0%, rgba(36, 12, 23, 0.92) 100%);
+  border-color: rgba(237, 203, 137, 0.65);
+  box-shadow: 0 18px 40px rgba(12, 3, 8, 0.55), 0 0 28px rgba(237, 203, 137, 0.18);
 }
 
-.pillar-icon {
-  font-size: 28px;
-  margin-bottom: 12px;
+.pillar-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pillar-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 30%, rgba(237, 203, 137, 0.22), rgba(72, 24, 44, 0.5));
+  border: 1px solid rgba(237, 203, 137, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #edcb89;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.standard-pillar-card:hover .pillar-icon-badge {
+  border-color: #edcb89;
+  box-shadow: 0 0 20px rgba(237, 203, 137, 0.4);
+  transform: scale(1.06);
+}
+
+.pillar-card-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #edcb89;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
 }
 
 .standard-pillar-card h3 {
-  font-size: 19px;
-  color: #fff6ee;
-  margin: 0 0 8px;
+  font: 500 20px/1.25 var(--serif);
+  color: #ffffff;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
 }
 
 .standard-pillar-card p {
   font-size: 13.5px;
   color: #e5cbd4;
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -13632,10 +13731,19 @@ html[data-site-loaded] .site-loader-inner {
 
 /* 1. TREATMENTS PAGE:
    Hero (Dark) -> Menu (Light) -> Finish Finder (Dark) -> Prep & FAQ (Light) -> Footer (Dark) */
-.treatments-menu-wrap {
+.treatments-menu-section {
+  width: 100%;
   background: #fffdfa;
   color: #2d1522;
   border-top: 1px solid #ebd7ce;
+  border-bottom: 1px solid #ebd7ce;
+  position: relative;
+  overflow: hidden;
+}
+
+.treatments-menu-wrap {
+  background: transparent !important;
+  border-top: none !important;
 }
 
 .treatments-menu-wrap .services-intro-banner h2 {
@@ -14552,4 +14660,164 @@ canvas {
   #main :is(.faq-9-layout-grid, .contact-layout, .founder-journal-grid) { gap: 14px; }
   #main :is(.essentials-head, .results-guide-head, .testimonials-header, .faq-9-header) { margin-bottom: 16px; }
   .site-footer .footer-invite-card { padding: 16px; gap: 12px; }
+}
+
+
+/* ==========================================================================
+   REACTBITS TECH-TEXT: ARCHITECTURAL BLUEPRINT HERO ANIMATIONS
+   Interactive canvas with technical guidelines, dashed drafting contours,
+   numerical character coordinate labels, floating specks, and spring physics
+   ========================================================================== */
+.tech-text {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.tech-text-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-split-heading {
+  margin: 0 0 16px;
+  line-height: 1.1;
+  max-width: 680px;
+}
+
+.tech-heading-line {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: clamp(48px, 6.8vw, 78px);
+  margin: 0 0 4px;
+}
+
+.tech-heading-line--accent {
+  margin-top: 4px;
+}
+
+.tech-text-static {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  font-family: var(--serif);
+  font-size: clamp(34px, 5.5vw, 62px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  word-spacing: 0.04em;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Color palettes for static fallback */
+.modern-hero:not(.modern-hero--contact) .tech-heading-line:not(.tech-heading-line--accent) .tech-text-static,
+.home-banner-carousel .tech-heading-line:not(.tech-heading-line--accent) .tech-text-static {
+  color: #ffffff;
+}
+
+.modern-hero:not(.modern-hero--contact) .tech-heading-line--accent .tech-text-static,
+.home-banner-carousel .tech-heading-line--accent .tech-text-static {
+  color: #edcb89;
+  font-style: italic;
+}
+
+.modern-hero--contact .tech-heading-line:not(.tech-heading-line--accent) .tech-text-static {
+  color: #351624;
+}
+
+.modern-hero--contact .tech-heading-line--accent .tech-text-static {
+  color: #8b3c57;
+  font-style: italic;
+}
+
+/* Once canvas mounts in browser, crossfade static text to interactive canvas */
+.tech-text.has-canvas .tech-text-static {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 600px) {
+  .tech-heading-line {
+    height: clamp(38px, 9.5vw, 54px);
+  }
+}
+
+
+/* ==========================================================================
+   GLOBAL HIGH-PERFORMANCE AMBIENT ATMOSPHERE & CARD RADIUS SYSTEM
+   Runs 100% on GPU compositor thread (transform & opacity) with zero main-thread CPU overhead,
+   ensuring blazing 60fps mobile speed.
+   ========================================================================== */
+@keyframes ambientGaze {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.08);
+    opacity: 0.75;
+  }
+}
+
+.ambient-site-glow {
+  position: fixed;
+  inset: -15%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(237, 203, 137, 0.055) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(139, 60, 87, 0.045) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(254, 245, 230, 0.04) 0%, transparent 60%);
+  animation: ambientGaze 22s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Unified Modern Radius & Shadow Elevation Across Entire Website */
+.service,
+.service.illustrated-service,
+.scalp-featured-card {
+  border-radius: 22px !important;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(72, 24, 44, 0.1) !important;
+  box-shadow: 0 6px 20px rgba(72, 24, 44, 0.06), 0 0 0 1px rgba(237, 203, 137, 0.15) !important;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1) !important;
+}
+
+.service:hover,
+.service.illustrated-service:hover,
+.scalp-featured-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(139, 60, 87, 0.4) !important;
+  box-shadow: 0 14px 34px rgba(72, 24, 44, 0.12), 0 0 0 1px rgba(237, 203, 137, 0.4) !important;
+}
+
+.treatment-art {
+  border-radius: 16px !important;
+  background: #faf2ec !important;
+  border: 1px solid rgba(72, 24, 44, 0.08) !important;
+}
+
+.treatments-menu-section {
+  width: 100%;
+  background: #fffdfa;
+  color: #2d1522;
+  border-top: 1px solid #ebd7ce;
+  border-bottom: 1px solid #ebd7ce;
+  position: relative;
+  overflow: hidden;
+}
+
+.treatments-menu-wrap {
+  background: transparent !important;
+  border-top: none !important;
 }
