@@ -14,14 +14,15 @@ const treatments = [
   ['microblading', 'Microblading', "Fine, hair-like strokes add definition to sparse areas while following the look of your existing brow hairs.", 'Discuss your natural brow shape, where you would like more definition, and how closely you want the strokes to follow your existing brow pattern.'],
   ['combination-brows', 'Combination Brows', "Hair strokes and soft shading give the brow more depth. Explore this option if you like the detail of microblading and want a softly filled-in finish.", 'Bring examples of the brow definition you like so you and Preethi can discuss where to place strokes and where a shaded finish may suit you.'],
   ['ombre-brows', 'Ombré Brows', "Graduated shading gives brows a softer front and more definition through the arch and tail, similar to lightly applied brow powder.", 'At your consultation, discuss how soft you want the front of the brow to look and how much definition you prefer through the arch and tail.'],
-  ['lip-blush', 'Lip Blush', "A tinted finish enhances your natural lip colour and defines the lip outline. Talk through the shade and how subtle or noticeable you want it to look.", 'Discuss the shade and degree of definition you prefer with Preethi before booking your treatment.'],
+  ['lip-blush', 'Signature Lip Blush', 'A semi-permanent watercolor tint that adds soft, youthful flush and defined symmetry ("your-lips-but-better"). Lasts 1–3 years with 20-min pre-numbing; custom-blended to your unique undertone.', 'At your consultation, Preethi tests shades on your lips to achieve your ideal nude-pink or soft rose tint. If you have darker or uneven pigmentation, we pair this with lip neutralization so the color heals true.'],
   ['eyebrow-lamination', 'Eyebrow Lamination', 'Reshapes and sets natural brow hairs for a fuller, groomed appearance.', 'Discuss the direction and amount of lift you prefer.'],
-  ['lip-neutralization', 'Lip Neutralization', 'Helps balance the appearance of uneven or darker lip tones.', 'Ask about the colour approach for your natural lip tone.'],
+  ['lip-neutralization', 'Dark Lip Neutralization', 'Targeted corrective pigments to cancel cool, dark, or patchy hyperpigmentation caused by sun exposure or melanin variations, restoring an even, warm base tone.', 'Preethi evaluates your natural lip melanin. Neutralization ensures that subsequent lip blush tints heal clean and radiant rather than muddy or dull.'],
   ['lip-liner', 'Lip Liner', 'Adds definition along the natural lip contour.', 'Discuss how subtle or defined you want the outline to look.'],
   ['scalp-micropigmentation', 'Scalp Micropigmentation (SMP)', 'Small pigment impressions can create the appearance of greater hair density or a closely shaved hairstyle.', 'Bring a reference for the hairline or finish you want to discuss.'],
   ['bb-glow', 'BB Glow', 'A skin treatment aimed at a more even-looking, radiant complexion.', 'Ask the studio what the treatment involves and discuss suitability for your skin.'],
   ['microneedling', 'Serum-Infused Microneedling', 'Combines microneedling with selected topical serums.', 'Discuss your skincare routine and ask which serum, if any, is appropriate for your skin.'],
-  ['medi-facials', 'Medi Facials', 'Targeted facials tailored to your skin type and concerns.', 'Share your skincare goals and any sensitivities during the consultation.']
+  ['medi-facials', 'Medi Facials', 'Targeted facials tailored to your skin type and concerns.', 'Share your skincare goals and any sensitivities during the consultation.'],
+  ['beauty-spot', 'Bespoke Beauty Spot', 'A delicate, semi-permanent cosmetic beauty mark (mole tattoo) placed to accentuate facial symmetry, eyes, lips, or cheekbones with classic elegance and zero daily makeup.', 'Preethi pencil-maps prospective placements with you in the studio mirror first. We custom-blend pigment to match your natural melanin undertone so the mark heals looking authentically yours.']
 ];
 const url = page => page === 'home' ? 'index.html' : page + '/index.html';
 const pages = {
@@ -337,6 +338,13 @@ function FooterSocialLinks() {
       )
     },
     {
+      name: 'WhatsApp',
+      href: chat,
+      svg: h('svg', { viewBox: '0 0 24 24', width: '22', height: '22', fill: 'none', stroke: '#140710', strokeWidth: '2', strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true', focusable: 'false' },
+        h('path', { d: 'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z' })
+      )
+    },
+    {
       name: 'Facebook',
       href: 'https://www.facebook.com/dermaphi_aesthetics',
       svg: h('svg', { viewBox: '0 0 24 24', width: '22', height: '22', fill: '#140710', stroke: 'none', 'aria-hidden': 'true', focusable: 'false' },
@@ -377,7 +385,7 @@ function SiteFooter({ page }) {
         h('div', { className: 'footer-invite-copy' },
           h('div', { className: 'footer-invite-pill' },
             h('span', { className: 'footer-invite-dot live-pulse', 'aria-hidden': 'true' }),
-            'DERMAPHI AESTHETICS · CHROMPET, CHENNAI'
+            'DERMAPHI AESTHETICS · CHROMPET, CHENNAI · BY APPOINTMENT'
           ),
           h('h2', { className: 'footer-invite-title' },
             'Crafting ',
@@ -401,6 +409,12 @@ function SiteFooter({ page }) {
           h(BrandLogo, { className: 'footer-wordmark' }),
           h('p', { className: 'footer-brand-desc' },
             'Permanent makeup artistry and clinical skincare with Preethi Sadha, certified PhiBrows master artist.'
+          ),
+          h('a', { href: chat, target: '_blank', rel: 'noopener noreferrer', className: 'footer-whatsapp-badge' },
+            h('svg', { viewBox: '0 0 24 24', width: '16', height: '16', fill: 'currentColor', 'aria-hidden': 'true', focusable: 'false' },
+              h('path', { d: 'M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.15c-.24.67-1.19 1.25-1.97 1.36-.53.07-1.22.12-3.55-.84-2.98-1.23-4.9-4.26-5.05-4.46-.15-.2-1.2-1.6-1.2-3.05s.76-2.17 1.03-2.46c.27-.29.6-.36.8-.36.2 0 .4 0 .58.01.19.01.44-.07.69.52.25.6.86 2.1.94 2.25.07.16.12.34.02.54-.1.2-.15.33-.3.51-.15.17-.32.39-.46.52-.15.15-.31.32-.13.63.18.3.79 1.3 1.7 2.11 1.17 1.04 2.15 1.37 2.46 1.52.3.15.48.13.66-.07.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.16.29.11 1.83.86 2.15 1.02.31.16.52.24.6.37.08.13.08.77-.16 1.44z' })
+            ),
+            h('span', null, 'Book via WhatsApp ↗')
           ),
           h('div', { className: 'footer-brand-badges' },
             h('span', { className: 'footer-badge' }, '✦ PhiAcademy European Standards'),
@@ -432,10 +446,12 @@ function SiteFooter({ page }) {
           [
             ['PhiBrows Microblading', 'microblading'],
             ['Signature Lip Blush', 'lip-blush'],
+            ['Dark Lip Neutralization', 'lip-neutralization'],
+            ['Bespoke Beauty Spot', 'beauty-spot'],
+            ['Ombré Powder Brows', 'ombre-brows'],
             ['Combination Brows', 'combination-brows'],
             ['Scalp Micropigmentation', 'scalp-enhancement'],
-            ['BB Glow Radiance', 'bb-glow'],
-            ['Serum-Infused Microneedling', 'microneedling']
+            ['BB Glow Radiance', 'bb-glow']
           ].map(([name, id]) =>
             h('a', { key: id, href: url('treatments') + '#' + id, className: 'footer-service-link' },
               h('span', null, name),
@@ -1257,6 +1273,28 @@ function HomeFounder() {
         h('figcaption', null, h('span', null, 'Preethi Sadha'), h('span', null, 'Founder · Dermaphi Aesthetics')))));
 }
 
+function ServiceGuide() {
+  const [selection, setSelection] = useState(0);
+  const options = [
+    ['Brows', 'brows-and-lips', 'Choose fine hair strokes for sparse areas, powder shading for soft depth, or a combination of both.'],
+    ['Lips', 'lip-enhancements', 'Bring a lip shade you already wear. Preethi can help you compare a sheer tint with a more defined finish.'],
+    ['Scalp', 'scalp-enhancement', 'Explore scalp micropigmentation if you want to discuss how the appearance of thinning areas could be softened.'],
+    ['Skincare', 'advanced-skincare', 'Tell Preethi what you want to work on, such as texture or uneven tone, before choosing a service.']
+  ];
+  const [label, id, copy] = options[selection];
+  return h('section', { className: 'wrap studio-section studio-services mobile-service-guide', 'aria-labelledby': 'studio-services-title' },
+    h('div', { className: 'studio-section-head' },
+      h('h2', { id: 'studio-services-title' }, 'Find your treatment'),
+      link('All services ↗', url('treatments'), 'text-link')),
+    h('div', { className: 'mobile-guide-options', role: 'group', 'aria-label': 'Treatment categories' },
+      options.map(([name], index) => h('button', {
+        key: name, type: 'button', 'aria-pressed': index === selection, onClick: () => setSelection(index)
+      }, name))),
+    h('div', { className: 'mobile-guide-answer', 'aria-live': 'polite' },
+      h('p', { key: id }, copy),
+      link('Explore ' + label.toLowerCase() + ' ↗', url('treatments') + '#' + id, 'text-link')));
+}
+
 function StudioHome() {
   const [slide, setSlide] = useState({ index: 0, previous: null, direction: 1, revision: 0 });
   const feature = slide.index;
@@ -1319,15 +1357,7 @@ function StudioHome() {
             h('button', { type: 'button', 'aria-label': 'Next slide', onClick: () => browse(1) }, '→'),
             h('button', { type: 'button', 'aria-label': autoplay.paused ? 'Play slideshow' : 'Pause slideshow', onClick: autoplay.toggle }, autoplay.paused ? '▶' : 'Ⅱ'))))),
     h(StudioCredentials),
-    h('section', { className: 'wrap studio-section studio-services', 'data-reveal': '', 'aria-labelledby': 'studio-services-title' },
-      h('div', { className: 'studio-section-head' }, h('div', null, h('p', { className: 'eyebrow' }, 'TREATMENTS'), h('h2', { id: 'studio-services-title' }, 'What would you like to define?')), link('Explore all services ↗', url('treatments'), 'text-link')),
-      h('div', { className: 'studio-service-grid' }, [
-        ['Brows', 'Choose fine strokes, soft shading or a blend of both.', 'brows-and-lips'],
-        ['Lip colour', 'Discuss a lip blush shade and how subtle you want the tint to look.', 'lip-enhancements'],
-        ['Scalp', 'Explore scalp micropigmentation for the appearance of fuller density.', 'scalp-enhancement'],
-        ['Skincare', 'Explore BB Glow, serum-infused microneedling and medi facials.', 'advanced-skincare']
-      ].map(([title, copy, id]) => h('a', { key: id, href: url('treatments') + '#' + id },
-        h('h3', null, title), h('p', null, copy), h('span', { 'aria-hidden': 'true' }, '↗'))))),
+    h(ServiceGuide),
     h(HomePortfolio),
     h(HomeFounder),
     h(HomeTestimonials),
@@ -1387,8 +1417,9 @@ function TreatmentPrepAndFAQ() {
   const [openItem, setOpenItem] = useState('q1');
 
   const categories = [
-    ['all', 'All Guides (6)'],
+    ['all', 'All Guides (8)'],
     ['techniques', 'Brows & Techniques (2)'],
+    ['lips', 'Lips & Beauty Spot (2)'],
     ['prep', 'Preparation & Safety (2)'],
     ['healing', 'Healing & Touch-ups (2)']
   ];
@@ -1409,11 +1440,25 @@ function TreatmentPrepAndFAQ() {
       answer: 'Yes, provided the previous pigment is faded by at least 60–70%. We require a clear, makeup-free photo in natural daylight before reserving your visit. Preethi will personally evaluate whether warm color neutralization, laser-free lightening, or fresh PhiBrows golden ratio mapping is needed before new strokes are placed.'
     },
     {
+      id: 'q7',
+      category: 'lips',
+      tag: 'Lips & Blushing',
+      question: 'What is the difference between Lip Blushing and Lip Neutralization, and do I need both?',
+      answer: 'Lip Blushing deposits sheer watercolor pigments to provide a natural flush, symmetry, and definition ("your-lips-but-better"). If your lips have cool, darker, or uneven hyperpigmentation (often from sun exposure, smoking, or natural melanin), Dark Lip Neutralization is performed first using warm corrective undertones (peach/warm terracotta) to create an even, neutral base before delicate blush tints are applied, preventing muddy or discolored healed results.'
+    },
+    {
+      id: 'q8',
+      category: 'lips',
+      tag: 'Facial Accents',
+      question: 'What is a Bespoke Beauty Spot, and how is it placed?',
+      answer: 'A bespoke beauty spot is an artistic micro-tattoo that places a natural-looking mole mark on the cheekbone, near the lips, or beside the eye to balance facial features and impart timeless Hollywood elegance. During your appointment, Preethi marks prospective placements with pencil in the mirror with you and custom-blends pigment matching your skin\'s natural melanin tone so it looks completely authentic and never smudges.'
+    },
+    {
       id: 'q3',
       category: 'prep',
       tag: 'Pre-Care Guide',
       question: 'How should I prepare 7 days and 24 hours before my studio session?',
-      answer: 'Discontinue retinol, AHA/BHA chemical exfoliants, and tanning on the face for at least 7 days prior. 24 hours before your visit, avoid caffeine, alcohol, aspirin, and blood-thinning supplements. Arrive with your usual everyday brow or lip makeup so Preethi can understand your personal aesthetic comfort and desired intensity.'
+      answer: 'Discontinue retinol, AHA/BHA chemical exfoliants, and tanning on the face for at least 7 days prior. 24 hours before your visit, avoid caffeine, alcohol, aspirin, and blood-thinning supplements. If you are prone to cold sores, consult your doctor for preventive antiviral medication 3–5 days prior to any lip procedure. Arrive with your usual everyday makeup so Preethi understands your aesthetic preference.'
     },
     {
       id: 'q4',
@@ -1427,7 +1472,7 @@ function TreatmentPrepAndFAQ() {
       category: 'healing',
       tag: 'Timeline & Care',
       question: 'What is the day-by-day healing timeline and aftercare routine?',
-      answer: 'Brows and lips will look 20–30% darker and bolder for the first 3–4 days, followed by mild microscopic flaking around days 5–7. Color will temporarily appear lighter as new skin forms, fully blooming and stabilizing by week 4–6. A complimentary perfecting touch-up is included to calibrate density and seal your final result.'
+      answer: 'Brows, lips, and beauty spots will look slightly bolder for the first 3–4 days, followed by mild microscopic flaking around days 5–7. Color will temporarily soften as new skin forms, fully blooming and stabilizing by week 4–6. A complimentary perfecting touch-up is included to calibrate density and seal your final result.'
     },
     {
       id: 'q6',
@@ -1539,6 +1584,8 @@ const treatmentArtwork = {
   'combination-brows': 'M20 65Q56 26 110 47Q82 39 33 66Z M36 60l14-12 M49 55l15-10 M64 50l15-6',
   'ombre-brows': 'M20 67Q58 28 110 47 M24 71Q60 36 109 48 M34 72Q68 44 105 49 M48 70Q77 49 98 51',
   'lip-blush': 'M22 58Q40 53 52 42Q59 38 65 44Q71 38 78 42Q90 53 108 58Q65 91 22 58Z M22 58Q49 60 65 55Q81 60 108 58',
+  'lip-neutralization': 'M22 58Q40 53 52 42Q59 38 65 44Q71 38 78 42Q90 53 108 58Q65 91 22 58Z M35 62Q65 72 95 62',
+  'beauty-spot': 'M35 60Q50 35 70 42Q90 50 95 70 M58 48A3.5 3.5 0 1 1 58 47.9Z',
   'pmu-touch-ups': 'M88 39A29 29 0 1 0 92 63 M87 28l2 13-13-1 M65 40v26 M52 53h26',
   microneedling: 'M42 68l31-31 12 12-31 31Z M70 41l8 8 M57 54l8 8 M35 75l-6 6 M42 82l-5 7 M49 88l-2 6',
   'chemical-peels': 'M65 26Q92 54 88 66A23 23 0 0 1 42 66Q38 54 65 26Z M51 66Q53 78 65 79'
@@ -1568,7 +1615,7 @@ function LineArtwork({ drawing }) {
 }
 const treatmentGroups = [
   ['Eyebrow Enhancements', 'brows-and-lips', [0, 1, 2, 4]],
-  ['Lip Enhancements', 'lip-enhancements', [5, 3, 6]],
+  ['Lip & Facial Accents', 'lip-enhancements', [3, 5, 11, 6]],
   ['Scalp Enhancement', 'scalp-enhancement', [7]],
   ['Skin Treatments', 'advanced-skincare', [8, 9, 10]]
 ];
@@ -1774,7 +1821,7 @@ function TreatmentsHero() {
           h('span', { className: 'heading-line' }, 'Architectural Precision.'),
           h('span', { className: 'heading-line heading-line--accent' }, h('em', null, 'Natural Elegance.'))
         ),
-        h('p', { className: 'modern-hero-desc' }, 'Every face possesses its own golden ratio. We design custom micro-pigmentation and medical-grade skincare that seamlessly elevate your natural symmetry and everyday confidence.'),
+        h('p', { className: 'modern-hero-desc' }, 'Explore brow, lip, scalp and skincare treatments, then talk through the right option for you with Preethi.'),
         h('div', { className: 'hero-category-nav', 'aria-label': 'Quick category jump' },
           [
             ['Brows', 'brows-and-lips', '4 services'],
@@ -1867,21 +1914,9 @@ function ResultsHero() {
           h('span', { className: 'heading-line' }, 'Artistry Verified.'),
           h('span', { className: 'heading-line heading-line--accent' }, h('em', null, 'Confidence Restored.'))
         ),
-        h('p', { className: 'modern-hero-desc' }, 'Every brow arch, lip tint, and scalp hair impression is crafted to the golden ratio. Explore unretouched client results before, during, and after healing.'),
-        h('div', { className: 'hero-stats-strip' },
-          [
-            ['100%', 'PhiBrows European Standard'],
-            ['Φ 1.618', 'Golden Ratio Geometry'],
-            ['5.0 ★', 'Client Studio Reviews']
-          ].map(([metric, label]) =>
-            h('div', { key: label, className: 'hero-stat-box' },
-              h('strong', null, metric),
-              h('span', null, label)
-            )
-          )
-        ),
+        h('p', { className: 'modern-hero-desc' }, 'Explore brow mapping, finished shapes and lip colour from Dermaphi’s client portfolio.'),
         h('div', { className: 'actions modern-hero-actions' },
-          link('Browse Portfolio Below ↓', '#client-portfolio', 'button'),
+          link('Browse Portfolio Below ↓', url('results') + '#client-portfolio', 'button'),
           link('Book a Consultation ↗', booking, 'text-link')
         )
       ),
@@ -1909,7 +1944,7 @@ function ResultsHero() {
           ),
           h('div', { className: 'lens-footer' },
             h('span', null, 'Unretouched photography · Natural daylight'),
-            link('View Full Gallery ↓', '#client-portfolio', 'text-link')
+            link('View Full Gallery ↓', url('results') + '#client-portfolio', 'text-link')
           )
         )
       )
@@ -1928,13 +1963,9 @@ function AboutHero() {
           h('span', { className: 'heading-line' }, 'Meet Preethi Sadha.'),
           h('span', { className: 'heading-line heading-line--accent' }, h('em', null, 'Crafting Quiet Luxury.'))
         ),
-        h('p', { className: 'modern-hero-desc' }, 'Founder of Dermaphi Aesthetics in Chrompet, Chennai. Dedicated to enhancing your unique facial harmony through bespoke permanent makeup and clinical precision.'),
-        h('div', { className: 'about-hero-quote' },
-          h('p', null, '“Every face possesses an innate golden geometry. Our craft is simply revealing it with gentle balance and perfection.”'),
-          h('cite', null, 'Preethi Sadha · Founder & PhiBrows Artist')
-        ),
+        h('p', { className: 'modern-hero-desc' }, 'Preethi founded Dermaphi Aesthetics in Chrompet, Chennai, where she offers permanent makeup and trains artists.'),
         h('div', { className: 'actions modern-hero-actions' },
-          link('Preethi’s Studio Story ↓', '#preethi-photo-story', 'button'),
+          link('Preethi’s Studio Story ↓', url('about') + '#preethi-photo-story', 'button'),
           link('Book a Consultation ↗', booking, 'text-link')
         )
       ),
@@ -1969,9 +2000,9 @@ function ContactHero() {
         h('span', { className: 'heading-line' }, 'Plan Your Visit to'),
         h('span', { className: 'heading-line heading-line--accent' }, h('em', null, 'Dermaphi Atelier.'))
       ),
-      h('p', { className: 'contact-hero-intro' }, 'Whether you are considering microblading, lip blush, scalp micropigmentation, or advanced skincare, we welcome you to discuss your vision in a private, unhurried consultation.'),
+      h('p', { className: 'contact-hero-intro' }, 'Tell us what you’d like to discuss and when you’d like to visit the studio.'),
       h('div', { className: 'contact-action-cards' },
-        h('a', { href: '#appointment', className: 'contact-card contact-card--highlight' },
+        h('a', { href: booking, className: 'contact-card contact-card--highlight' },
           h('span', { className: 'contact-card-icon', 'aria-hidden': 'true' }, '📅'),
           h('h3', null, 'Appointment Enquiry'),
           h('p', null, 'Fill our studio enquiry form to request your preferred date and time.'),

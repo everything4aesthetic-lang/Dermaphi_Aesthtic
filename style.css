@@ -13308,8 +13308,37 @@ html[data-site-loaded] .site-loader-inner {
   font-size: 13.5px;
   color: #ebd2dc;
   line-height: 1.65;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   max-width: 36ch;
+}
+
+.footer-whatsapp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  color: #25d366 !important;
+  border-radius: 99px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0 0 16px;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.25, 1);
+  width: fit-content;
+}
+
+.footer-whatsapp-badge:hover {
+  background: #25d366;
+  color: #120610 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.footer-whatsapp-badge svg {
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 .footer-brand-badges {
@@ -14390,4 +14419,80 @@ canvas {
   background: none !important;
   font-style: italic !important;
   text-shadow: 0 2px 16px rgba(237, 203, 137, 0.35) !important;
+}
+.mobile-service-guide .studio-section-head { align-items: baseline; margin-bottom: 12px; }
+.mobile-service-guide .studio-section-head h2 { margin: 0; }
+.mobile-guide-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid #dfc5bc;
+  border-radius: 14px;
+  background: #f6e9e2;
+}
+.mobile-guide-options button {
+  min-height: 44px;
+  padding: 5px 3px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font-weight: 600;
+}
+.mobile-guide-options button[aria-pressed="true"] { background: #48182c; color: #fff7ef; }
+.mobile-guide-answer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  border: 1px solid #ead6ce;
+  border-radius: 14px;
+  margin-top: 8px;
+  padding: clamp(12px, 2vw, 20px);
+  background: #fffaf6;
+}
+.mobile-guide-answer p { margin: 0; flex: 1 1 46ch; }
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-guide-answer p { animation: service-guide-in .24s ease-out both; }
+}
+@keyframes service-guide-in { from { opacity: .5; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 800px) {
+  #main :is(.section, .studio-section) { padding-block: clamp(22px, 5vw, 36px); }
+  #main .inner-hero.modern-hero { padding-block: clamp(20px, 5vw, 35px); }
+  #main .modern-hero-grid { gap: 16px; }
+  #main .modern-hero h1 { font-size: clamp(33px, 5.9vw, 51px); line-height: 1.06; margin-bottom: 10px; }
+  #main .modern-hero .breadcrumbs { margin-bottom: 8px; }
+  #main .modern-hero .hero-badge-pill { margin-bottom: 9px; }
+  #main .modern-hero :is(.modern-hero-desc, .contact-hero-intro) { line-height: 1.5; margin-bottom: 12px; }
+  #main .modern-hero-actions { margin-top: 8px; gap: 8px 14px; }
+  #main .home-banner-carousel { min-height: 0; padding-bottom: 0; }
+  #main .home-banner-content { min-height: 0; padding-block: 16px 22px; }
+  #main .home-banner-art { height: clamp(155px, 43vw, 280px); }
+  #main .home-banner-carousel .hero-carousel-controls { margin-top: 10px; }
+  .modern-hero--about .about-portrait-card { max-width: 360px; margin-inline: 0; padding: 8px; }
+  .modern-hero--about .portrait-frame { height: clamp(155px, 44vw, 235px); aspect-ratio: auto; }
+  .modern-hero--about .portrait-meta { padding: 8px 4px 2px; }
+  .modern-hero--results .lens-viewport { height: clamp(185px, 45vw, 280px); aspect-ratio: auto; }
+  .modern-hero--results :is(.lens-toolbar, .lens-footer) { gap: 8px; padding: 8px 10px; }
+  .modern-hero--contact .contact-action-cards { gap: 8px; }
+  .modern-hero--contact .contact-card { position: relative; display: block; padding: 11px 12px 11px 43px; }
+  .modern-hero--contact .contact-card-icon { position: absolute; left: 12px; top: 10px; margin: 0; font-size: 19px; }
+  .modern-hero--contact .contact-card h3 { font-size: 18px; margin-bottom: 3px; }
+  .modern-hero--contact .contact-card p { margin-bottom: 3px; }
+  .modern-hero--treatments .hero-category-nav { margin-block: 10px; gap: 6px; }
+  .modern-hero--treatments .spotlight-header { padding: 10px; gap: 8px; }
+  .modern-hero--treatments .spotlight-body { padding: 10px; gap: 10px; }
+  .modern-hero--treatments .spotlight-art-wrap { min-height: 0; height: 92px; }
+  .modern-hero--treatments .spotlight-art-wrap svg { height: 100%; width: auto; }
+  #main .treatment-group { margin-bottom: 22px; }
+  #main .treatment-group-header { margin-bottom: 10px; }
+  #main .treatment-group .illustrated-service { min-height: 0; padding: 13px; gap: 6px; }
+  #main .treatment-group .treatment-art { width: 100%; min-height: 0; height: 62px; margin-bottom: 6px; }
+  #main .treatment-group .treatment-art svg { height: 100%; width: auto; }
+  #main .treatment-group .illustrated-service p { margin-bottom: 6px; }
+  #main :is(.faq-9-layout-grid, .contact-layout, .founder-journal-grid) { gap: 14px; }
+  #main :is(.essentials-head, .results-guide-head, .testimonials-header, .faq-9-header) { margin-bottom: 16px; }
+  .site-footer .footer-invite-card { padding: 16px; gap: 12px; }
 }
