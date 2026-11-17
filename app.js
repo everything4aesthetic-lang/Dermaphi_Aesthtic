@@ -904,6 +904,13 @@ function HomeTestimonials() {
     onMouseEnter: () => setIsPaused(true),
     onMouseLeave: () => setIsPaused(false)
   },
+    // Atmospheric animated ambient background
+    h('div', { className: 'testimonials-bg-ambient', 'aria-hidden': 'true' },
+      h('div', { className: 'ambient-orb ambient-orb--1' }),
+      h('div', { className: 'ambient-orb ambient-orb--2' }),
+      h('div', { className: 'ambient-orb ambient-orb--3' })
+    ),
+    h(GoldenCosmosCanvas, { className: 'testimonials-cosmos-canvas', count: 40, speed: 0.6, color: 'rose' }),
     h('div', { className: 'wrap testimonials-container' },
       // Header with Google Reviews Trust Pill
       h('div', { className: 'testimonials-header' },
