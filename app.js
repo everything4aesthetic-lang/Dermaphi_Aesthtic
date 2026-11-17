@@ -847,33 +847,56 @@ function ThreeTestimonialsCanvas() {
 // Luminous Spotlight Testimonial Showcase with Interactive Client Tabs
 // Unique Floating Speech-Bubble Testimonial Cloud (Inspired by Client Inspiration)
 // Premium Luxury Testimonial Carousel with Reduced Punchy Quotes
+// Reborn-Inspired Luxury Client Testimonials Multi-Card Carousel
 function HomeTestimonials() {
-  const [index, setIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [cardsPerPage, setCardsPerPage] = useState(3);
   const [isPaused, setIsPaused] = useState(false);
-  const [fade, setFade] = useState(false);
-  const total = clientTestimonials.length;
-  const current = clientTestimonials[index];
+  const [animating, setAnimating] = useState(false);
 
-  function selectReview(newIndex) {
-    if (newIndex === index) return;
-    setFade(true);
+  useEffect(() => {
+    function updateCards() {
+      const w = window.innerWidth;
+      if (w <= 680) {
+        setCardsPerPage(1);
+      } else if (w <= 1024) {
+        setCardsPerPage(2);
+      } else {
+        setCardsPerPage(3);
+      }
+    }
+    updateCards();
+    window.addEventListener('resize', updateCards);
+    return () => window.removeEventListener('resize', updateCards);
+  }, []);
+
+  const totalCards = clientTestimonials.length;
+  const totalPages = Math.max(1, Math.ceil(totalCards / cardsPerPage));
+  const safePageIndex = Math.min(pageIndex, totalPages - 1);
+
+  function goToPage(p) {
+    if (p === safePageIndex || animating) return;
+    setAnimating(true);
     setTimeout(() => {
-      setIndex(newIndex);
-      setFade(false);
-    }, 220);
+      setPageIndex(p);
+      setAnimating(false);
+    }, 200);
   }
 
   function move(step) {
-    selectReview((index + step + total) % total);
+    goToPage((safePageIndex + step + totalPages) % totalPages);
   }
 
   useEffect(() => {
-    if (isPaused || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (isPaused || totalPages <= 1 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const timer = setInterval(() => {
-      setIndex(curr => (curr + 1) % total);
-    }, 5500);
+      setPageIndex(curr => (curr + 1) % totalPages);
+    }, 6000);
     return () => clearInterval(timer);
-  }, [isPaused, total]);
+  }, [isPaused, totalPages]);
+
+  const start = safePageIndex * cardsPerPage;
+  const visibleCards = clientTestimonials.slice(start, start + cardsPerPage);
 
   return h('section', {
     className: 'home-testimonials modern-testimonials-section section',
@@ -891,7 +914,7 @@ function HomeTestimonials() {
             h('span', { className: 'heading-line heading-line--accent' }, h('em', null, 'Lasting Confidence.'))
           ),
           h('p', { className: 'testimonials-subhead' },
-            'Read how Preethi Sadha transforms brows, lips, and skin with European PhiAcademy precision and personal care.'
+            'Hear from our satisfied clients who have experienced bespoke brow symmetry, watercolor lips, and clinical skin rejuvenation with Preethi Sadha.'
           )
         ),
         h('a', {
@@ -912,106 +935,101 @@ function HomeTestimonials() {
         )
       ),
 
-      // Central Luxury Spotlight Carousel Card
-      h('div', { className: 'testimonial-carousel-stage' },
-        h('article', {
-          className: 'testimonial-carousel-card' + (fade ? ' is-animating' : ''),
-          key: current.id
+      // Reborn-Style Multi-Card Grid Carousel Stage
+      h('div', { className: 'reborn-carousel-stage' },
+        h('div', {
+          className: 'reborn-cards-grid' + (animating ? ' is-animating' : ''),
+          key: safePageIndex
         },
-          // Card Header: Badges & Stars
-          h('div', { className: 'carousel-card-top' },
-            h('div', { className: 'carousel-treatment-badges' },
-              h('span', { className: 'treatment-pill' }, '✦ ' + current.service),
-              h('span', { className: 'verified-pill' }, '✓ Verified Studio Client')
-            ),
-            h('div', { className: 'carousel-stars', 'aria-label': '5 out of 5 stars' }, '★★★★★')
-          ),
-
-          // Main Short Punchy Quote
-          h('blockquote', { className: 'carousel-quote-box' },
-            h('span', { className: 'quote-mark quote-mark--open', 'aria-hidden': 'true' }, '“'),
-            h('p', { className: 'carousel-quote-text' }, current.quote),
-            h('span', { className: 'quote-mark quote-mark--close', 'aria-hidden': 'true' }, '”')
-          ),
-
-          // Client Profile Footer
-          h('div', { className: 'carousel-client-footer' },
-            h('div', { className: 'carousel-avatar-wrap' },
-              h('img', {
-                src: current.photo,
-                alt: current.name + ' - ' + current.service,
-                className: 'carousel-avatar-img',
-                width: 58,
-                height: 58,
-                loading: 'lazy'
-              })
-            ),
-            h('div', { className: 'carousel-client-meta' },
-              h('h4', { className: 'carousel-client-name' }, current.name),
-              h('p', { className: 'carousel-client-location' }, current.location + ' · Private Studio Session')
-            ),
-            h('div', { className: 'carousel-seal-badge' },
-              h('span', { className: 'seal-star', 'aria-hidden': 'true' }, '✦'),
-              h('span', null, 'PhiAcademy European Standards')
+          visibleCards.map(item =>
+            h('article', {
+              key: item.id,
+              className: 'reborn-review-card'
+            },
+              // Floating Avatar top-left
+              h('div', { className: 'reborn-avatar-bubble' },
+                h('img', {
+                  src: item.photo,
+                  alt: item.name + ' - ' + item.service,
+                  className: 'reborn-avatar-img',
+                  width: 58,
+                  height: 58,
+                  loading: 'lazy'
+                })
+              ),
+              // Decorative Quote Watermark top-right
+              h('svg', {
+                className: 'reborn-quote-watermark',
+                viewBox: '0 0 24 24',
+                fill: 'currentColor',
+                'aria-hidden': 'true',
+                focusable: 'false'
+              },
+                h('path', { d: 'M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z' })
+              ),
+              // Star Rating
+              h('div', { className: 'reborn-review-stars', 'aria-label': '5 out of 5 stars' }, '★★★★★'),
+              // Review Quote
+              h('blockquote', { className: 'reborn-review-quote' }, item.quote),
+              // Reviewer Footer Info
+              h('div', { className: 'reborn-review-meta' },
+                h('h4', { className: 'reborn-client-name' }, item.name),
+                h('div', { className: 'reborn-service-pill' },
+                  h('span', { className: 'pill-dot', 'aria-hidden': 'true' }, '✦'),
+                  h('span', { className: 'pill-service' }, item.service),
+                  h('span', { className: 'pill-sep', 'aria-hidden': 'true' }, '·'),
+                  h('span', { className: 'pill-verified' }, 'Verified Client')
+                )
+              )
             )
           )
         )
       ),
 
-      // Interactive Client Review Selector Chips / Tabs
-      h('div', { className: 'testimonial-client-chips', role: 'tablist', 'aria-label': 'Select client review' },
-        clientTestimonials.map((item, idx) => {
-          const isSelected = idx === index;
-          return h('button', {
-            key: item.id,
-            type: 'button',
-            role: 'tab',
-            'aria-selected': isSelected,
-            className: 'client-chip-btn' + (isSelected ? ' is-active' : ''),
-            onClick: () => selectReview(idx)
-          },
-            h('img', {
-              src: item.photo,
-              alt: item.name,
-              className: 'chip-avatar-img',
-              width: 26,
-              height: 26,
-              loading: 'lazy'
-            }),
-            h('span', { className: 'chip-client-name' }, item.name),
-            h('span', { className: 'chip-sep', 'aria-hidden': 'true' }, '·'),
-            h('span', { className: 'chip-service-name' }, item.tag)
-          );
-        })
-      ),
-
-      // Carousel Controls & Slide Counter Bar
-      h('div', { className: 'testimonial-carousel-controls' },
-        h('div', { className: 'carousel-counter-badge' },
-          h('span', { className: 'counter-current' }, '0' + (index + 1)),
-          h('span', { className: 'counter-separator' }, '/'),
-          h('span', { className: 'counter-total' }, '0' + total)
+      // Reborn-Style Carousel Controls & Indicator Pills
+      h('div', { className: 'reborn-carousel-controls' },
+        h('button', {
+          type: 'button',
+          className: 'reborn-nav-btn reborn-prev-btn',
+          'aria-label': 'Previous reviews',
+          onClick: () => move(-1)
+        },
+          h('svg', { viewBox: '0 0 24 24', width: '20', height: '20', fill: 'none', stroke: 'currentColor', strokeWidth: '2.5', strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true', focusable: 'false' },
+            h('polyline', { points: '15 18 9 12 15 6' })
+          )
         ),
-        h('div', { className: 'carousel-nav-buttons' },
-          h('button', {
-            type: 'button',
-            className: 'carousel-arrow-btn',
-            'aria-label': 'Previous testimonial',
-            onClick: () => move(-1)
-          }, '←'),
-          h('button', {
-            type: 'button',
-            className: 'carousel-arrow-btn',
-            'aria-label': 'Next testimonial',
-            onClick: () => move(1)
-          }, '→'),
-          h('button', {
-            type: 'button',
-            className: 'carousel-pause-btn',
-            'aria-label': isPaused ? 'Resume autoplay' : 'Pause autoplay',
-            onClick: () => setIsPaused(p => !p)
-          }, isPaused ? '▶' : 'Ⅱ')
-        )
+        h('div', { className: 'reborn-pagination-track', role: 'tablist', 'aria-label': 'Reviews pagination' },
+          Array.from({ length: totalPages }).map((_, pIdx) => {
+            const isActive = pIdx === safePageIndex;
+            return h('button', {
+              key: pIdx,
+              type: 'button',
+              role: 'tab',
+              'aria-selected': isActive,
+              className: 'reborn-page-indicator' + (isActive ? ' is-active' : ''),
+              'aria-label': 'Go to review slide ' + (pIdx + 1),
+              onClick: () => goToPage(pIdx)
+            },
+              h('span', { className: 'indicator-bar' })
+            );
+          })
+        ),
+        h('button', {
+          type: 'button',
+          className: 'reborn-nav-btn reborn-next-btn',
+          'aria-label': 'Next reviews',
+          onClick: () => move(1)
+        },
+          h('svg', { viewBox: '0 0 24 24', width: '20', height: '20', fill: 'none', stroke: 'currentColor', strokeWidth: '2.5', strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true', focusable: 'false' },
+            h('polyline', { points: '9 18 15 12 9 6' })
+          )
+        ),
+        h('button', {
+          type: 'button',
+          className: 'reborn-pause-btn',
+          'aria-label': isPaused ? 'Resume autoplay' : 'Pause autoplay',
+          onClick: () => setIsPaused(p => !p)
+        }, isPaused ? '▶' : 'Ⅱ')
       )
     )
   );

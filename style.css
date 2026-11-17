@@ -8809,123 +8809,65 @@ html[data-site-loaded] .site-loader-inner {
 }
 
 /* ==========================================================================
-   CAROUSEL SPOTLIGHT CARD
+   REBORN-STYLE CLIENT TESTIMONIALS CAROUSEL
+   Full-width grid with floating avatar bubbles, watermark quote, & pill pagination
    ========================================================================== */
 
-.testimonial-carousel-stage {
-  max-width: 920px;
-  margin: 0 auto clamp(26px, 4vw, 38px);
+.reborn-carousel-stage {
+  width: 100%;
+  margin: 0 auto clamp(28px, 4vw, 44px);
   position: relative;
 }
 
-.testimonial-carousel-card {
-  background: #ffffff;
-  border: 1.5px solid rgba(72, 24, 44, 0.14);
-  border-radius: 26px;
-  padding: clamp(28px, 4.5vw, 48px);
-  box-shadow: 0 16px 44px rgba(72, 24, 44, 0.08), 0 2px 6px rgba(72, 24, 44, 0.04);
-  position: relative;
+.reborn-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.5vw, 28px);
+  width: 100%;
   transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
-.testimonial-carousel-card.is-animating {
+.reborn-cards-grid.is-animating {
   opacity: 0;
   transform: translateY(8px) scale(0.985);
 }
 
-.carousel-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 22px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(72, 24, 44, 0.09);
-}
-
-.carousel-treatment-badges {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.treatment-pill {
-  font-size: 12px;
-  font-weight: 600;
-  color: #6a243c;
-  background: #faede6;
-  border: 1px solid #ebd3c5;
-  padding: 5px 14px;
-  border-radius: 99px;
-  letter-spacing: 0.02em;
-}
-
-.verified-pill {
-  font-size: 11.5px;
-  color: #15803d;
-  background: rgba(21, 128, 61, 0.08);
-  border: 1px solid rgba(21, 128, 61, 0.25);
-  padding: 5px 12px;
-  border-radius: 99px;
-  font-weight: 500;
-}
-
-.carousel-stars {
-  color: #d97706;
-  letter-spacing: 2.5px;
-  font-size: 15px;
-}
-
-.carousel-quote-box {
+.reborn-review-card {
   position: relative;
-  margin: 0 0 28px;
-  padding: 0;
-}
-
-.carousel-quote-text {
-  font: 400 clamp(18px, 2.2vw, 24px)/1.65 var(--serif);
-  color: #2b111e;
-  margin: 0;
-  display: inline;
-}
-
-.quote-mark {
-  font: italic 32px/1 var(--serif);
-  color: rgba(139, 60, 87, 0.4);
-  vertical-align: middle;
-  user-select: none;
-}
-
-.quote-mark--open {
-  margin-right: 6px;
-}
-
-.quote-mark--close {
-  margin-left: 6px;
-}
-
-.carousel-client-footer {
+  background: #ffffff;
+  border: 1px solid #ebd7ce;
+  border-radius: 20px;
+  padding: 44px 28px 28px;
+  margin-top: 32px;
+  box-shadow: 0 10px 30px rgba(18, 31, 56, 0.06), 0 2px 6px rgba(18, 31, 56, 0.02);
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(72, 24, 44, 0.09);
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.28s cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
-.carousel-avatar-wrap {
-  width: 56px;
-  height: 56px;
+.reborn-review-card:hover {
+  transform: translateY(-4px);
+  border-color: #dfb268;
+  box-shadow: 0 18px 40px rgba(72, 24, 44, 0.12), 0 4px 12px rgba(72, 24, 44, 0.04);
+}
+
+/* Floating Avatar top-left */
+.reborn-avatar-bubble {
+  position: absolute;
+  top: -28px;
+  left: 24px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
+  border: 3.5px solid #ffffff;
+  box-shadow: 0 6px 18px rgba(72, 24, 44, 0.16);
   overflow: hidden;
-  border: 2.5px solid #edcb89;
-  box-shadow: 0 4px 12px rgba(72, 24, 44, 0.18);
-  flex-shrink: 0;
   background: #faede6;
+  z-index: 2;
 }
 
-.carousel-avatar-img {
+.reborn-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -8933,210 +8875,174 @@ html[data-site-loaded] .site-loader-inner {
   display: block;
 }
 
-.carousel-client-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+/* Watermark quote icon top-right */
+.reborn-quote-watermark {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  color: rgba(237, 203, 137, 0.35);
+  pointer-events: none;
+}
+
+/* Stars */
+.reborn-review-stars {
+  color: #df9e38;
+  letter-spacing: 2px;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+/* Review text */
+.reborn-review-quote {
+  font: 400 clamp(14.5px, 1.2vw, 15.5px)/1.65 var(--sans, system-ui, sans-serif);
+  color: #3b2230;
+  margin: 0 0 20px;
   flex-grow: 1;
 }
 
-.carousel-client-name {
-  font: 600 17px/1.2 var(--serif);
-  color: #351624;
-  margin: 0;
+/* Reviewer meta */
+.reborn-review-meta {
+  padding-top: 16px;
+  border-top: 1px solid rgba(72, 24, 44, 0.08);
 }
 
-.carousel-client-location {
-  font-size: 12.5px;
-  color: #633246;
-  margin: 0;
+.reborn-client-name {
+  font-family: var(--font-heading, "Cormorant Garamond", Georgia, serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: #2b111e;
+  margin: 0 0 6px;
+  letter-spacing: 0.01em;
 }
 
-.carousel-seal-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  color: #6a243c;
-  background: #faede6;
-  border: 1px solid #ebd3c5;
-  padding: 6px 14px;
-  border-radius: 99px;
-  font-weight: 500;
-}
-
-.seal-star {
-  font-size: 11px;
-  color: #8b3c57;
-}
-
-/* Interactive Client Review Selector Chips */
-.testimonial-client-chips {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 26px;
-  position: relative;
-  z-index: 2;
-}
-
-.client-chip-btn {
+.reborn-service-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px 6px 8px;
-  border-radius: 99px;
-  background: #ffffff;
-  border: 1.5px solid rgba(72, 24, 44, 0.15);
-  color: #48182c;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.25, 1);
-  box-shadow: 0 2px 8px rgba(72, 24, 44, 0.04);
+  gap: 6px;
+  font-size: 12px;
+  color: #722742;
+  font-weight: 500;
+  flex-wrap: wrap;
 }
 
-.chip-avatar-img {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #edcb89;
+.reborn-service-pill .pill-dot {
+  color: #df9e38;
+  font-size: 10px;
 }
 
-.chip-client-name {
+.reborn-service-pill .pill-sep {
+  opacity: 0.4;
+}
+
+.reborn-service-pill .pill-verified {
+  color: #15803d;
   font-weight: 600;
 }
 
-.chip-sep {
-  opacity: 0.35;
-}
-
-.chip-service-name {
-  font-size: 12px;
-  opacity: 0.85;
-}
-
-.client-chip-btn:hover {
-  background: #faede6;
-  border-color: #48182c;
-  color: #351624;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(72, 24, 44, 0.1);
-}
-
-.client-chip-btn.is-active {
-  background: #48182c;
-  border-color: #48182c;
-  color: #ffffff;
-  box-shadow: 0 6px 20px rgba(72, 24, 44, 0.25);
-  transform: translateY(-2px);
-}
-
-.client-chip-btn.is-active .chip-avatar-img {
-  border-color: #edcb89;
-}
-
-.client-chip-btn.is-active .chip-service-name {
-  color: #edcb89;
-}
-
-/* Carousel Navigation & Counter Row */
-.testimonial-carousel-controls {
+/* Reborn Navigation & Pagination Controls */
+.reborn-carousel-controls {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 16px;
+  margin-top: clamp(24px, 3.5vw, 36px);
   position: relative;
   z-index: 2;
 }
 
-.carousel-counter-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #48182c;
-  background: #ffffff;
-  border: 1px solid rgba(72, 24, 44, 0.18);
-  padding: 6px 14px;
-  border-radius: 99px;
-  box-shadow: 0 2px 8px rgba(72, 24, 44, 0.04);
-}
-
-.counter-current {
-  color: #351624;
-}
-
-.counter-separator {
-  opacity: 0.45;
-}
-
-.counter-total {
-  color: #633246;
-}
-
-.carousel-nav-buttons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.carousel-arrow-btn,
-.carousel-pause-btn {
-  width: 42px;
-  height: 42px;
+.reborn-nav-btn {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #ffffff;
-  border: 1.5px solid #48182c;
+  border: 1.5px solid rgba(72, 24, 44, 0.22);
   color: #48182c;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: all 0.22s;
-  box-shadow: 0 4px 12px rgba(72, 24, 44, 0.08);
+  transition: all 0.24s cubic-bezier(0.2, 0.8, 0.25, 1);
+  box-shadow: 0 2px 8px rgba(72, 24, 44, 0.06);
 }
 
-.carousel-arrow-btn:hover,
-.carousel-pause-btn:hover {
+.reborn-nav-btn:hover {
+  background: #edcb89;
+  border-color: #edcb89;
+  color: #140710;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(237, 203, 137, 0.4);
+}
+
+.reborn-pagination-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px;
+}
+
+.reborn-page-indicator {
+  background: none;
+  border: none;
+  padding: 10px 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.reborn-page-indicator .indicator-bar {
+  display: block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: rgba(72, 24, 44, 0.25);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.reborn-page-indicator:hover .indicator-bar {
+  background: rgba(72, 24, 44, 0.5);
+}
+
+.reborn-page-indicator.is-active .indicator-bar {
+  width: 32px;
+  border-radius: 99px;
+  background: #edcb89;
+  box-shadow: 0 2px 8px rgba(237, 203, 137, 0.5);
+}
+
+.reborn-pause-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(72, 24, 44, 0.06);
+  border: 1px solid rgba(72, 24, 44, 0.15);
+  color: #48182c;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reborn-pause-btn:hover {
   background: #48182c;
   color: #ffffff;
-  border-color: #48182c;
-  transform: scale(1.08);
-  box-shadow: 0 6px 20px rgba(72, 24, 44, 0.24);
+}
+
+@media (max-width: 1024px) {
+  .reborn-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 680px) {
-  .testimonial-carousel-card {
-    padding: 24px 20px 22px;
+  .reborn-cards-grid {
+    grid-template-columns: 1fr;
   }
-
-  .carousel-card-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .carousel-client-footer {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .carousel-seal-badge {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .testimonial-client-chips {
-    gap: 6px;
-  }
-
-  .client-chip-btn {
-    padding: 5px 10px 5px 6px;
-    font-size: 12px;
+  .reborn-review-card {
+    padding: 38px 20px 22px;
   }
 }
 
@@ -13141,9 +13047,7 @@ html[data-site-loaded] .site-loader-inner {
 .footer-wrap {
   position: relative;
   z-index: 2;
-  max-width: 1180px;
   margin: 0 auto;
-  padding-inline: clamp(16px, 4vw, 32px);
 }
 
 /* Glassmorphic Top Invitation Card */
@@ -14172,15 +14076,51 @@ canvas {
   max-width: 100%;
 }
 
-/* Container & Global Wrappers */
-.wrap {
-  width: min(1200px, calc(100% - clamp(24px, 5vw, 64px)));
-  margin-inline: auto;
+/* ==========================================================================
+   UNIFIED GLOBAL CONTAINER & RESPONSIVE ALIGNMENT SYSTEM
+   Guarantees 100% synchronized width, margins, and gutters across all sections
+   ========================================================================== */
+
+:root {
+  --site-max-width: 1200px;
+  --site-gutter: clamp(18px, 4vw, 36px);
 }
 
-@media (max-width: 600px) {
-  .wrap {
-    width: calc(100% - 32px);
+.wrap,
+.footer-wrap,
+.faq-9-container,
+.testimonials-container,
+.treatments-menu-wrap,
+.finish-finder,
+.contact-wrap,
+.portfolio-wrap,
+.artistry-standards-wrap,
+.depth-wrap,
+.home-banner-content,
+.modern-hero-grid {
+  width: min(var(--site-max-width), calc(100% - 2 * var(--site-gutter))) !important;
+  max-width: var(--site-max-width) !important;
+  margin-inline: auto !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 640px) {
+  .wrap,
+  .footer-wrap,
+  .faq-9-container,
+  .testimonials-container,
+  .treatments-menu-wrap,
+  .finish-finder,
+  .contact-wrap,
+  .portfolio-wrap,
+  .artistry-standards-wrap,
+  .depth-wrap,
+  .home-banner-content,
+  .modern-hero-grid {
+    width: calc(100% - 32px) !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
   }
 }
 
@@ -14238,16 +14178,6 @@ canvas {
 .modern-testimonials-section {
   width: 100%;
   overflow: hidden;
-}
-
-.testimonial-showcase-stage {
-  width: 100%;
-  max-width: 860px;
-  margin-inline: auto;
-}
-
-.testimonial-hero-card {
-  width: 100%;
 }
 
 @media (max-width: 640px) {
