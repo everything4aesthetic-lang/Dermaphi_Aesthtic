@@ -3,7 +3,12 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const port = Number(process.env.PORT || 3000);
-const types = {'.html':'text/html', '.css':'text/css', '.js':'text/javascript', '.jpg':'image/jpeg'};
+const types = {
+  '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png',
+  '.webp': 'image/webp', '.svg': 'image/svg+xml', '.pdf': 'application/pdf',
+  '.woff2': 'font/woff2'
+};
 const root = __dirname;
 http.createServer(async (request, response) => {
   try {
