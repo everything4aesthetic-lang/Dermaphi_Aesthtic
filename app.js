@@ -383,7 +383,7 @@ function TechText({
   const containerRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const settingsRef = React.useRef(null);
-  const wakeRef = React.useRef(() => {});
+  const wakeRef = React.useRef(() => { });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -1175,7 +1175,7 @@ function TechText({
     return () => {
       alive = false;
       cancelAnimationFrame(raf);
-      wakeRef.current = () => {};
+      wakeRef.current = () => { };
       resizeObserver.disconnect();
       window.removeEventListener('resize', resize);
       intersectionObserver.disconnect();
@@ -1568,8 +1568,7 @@ const clientPhotos = [
   ['client-3.jpg', 'Brow portfolio · fuller outline', 'Bring a reference if you want to discuss more definition through the brow.'],
   ['client-4.jpg', 'Brow portfolio · front view', 'Notice the shape from the front of the brow through the tail.'],
   ['client-5.jpg', 'Brow portfolio · close-up', 'Use the close-up to discuss how much detail you want in your own finish.'],
-  ['client-6.jpg', 'Lip portfolio · colour close-up', 'Ask Preethi how your starting lip tone informs the choice of colour.'],
-  ['client-7.jpg', 'Lip portfolio · tinted finish', 'Bring a shade you wear often if you want to discuss a subtle or more defined tint.']
+  ['client-6.jpg', 'Lip neutralization · Before & after', 'Compare the lip tone before and after treatment. The final colour becomes clearer as the lips heal.']
 ];
 function galleryFrame(index, position, count, variant) {
   const half = count / 2;
@@ -1673,7 +1672,7 @@ function StudioDepthGallery({ id, photos = studioPhotos, title = 'Inside the stu
           ? photos.map(([src, label], index) => h('div', {
             key: src, className: 'depth-card', 'aria-hidden': index !== active,
             style: galleryFrame(index, selection, count, variant)
-          }, h('img', { src: 'assets/' + src, alt: label, loading: 'lazy', draggable: false })))
+          }, src === 'client-6.jpg' ? h(LipComparison) : h('img', { src: 'assets/' + src, alt: label, loading: 'lazy', draggable: false })))
           : h('div', { className: 'ribbon-film', key: selection }, [-1, 0, 1].map(step => {
             const [src, label] = photos[(active + step + count) % count];
             return h('figure', { key: src, 'data-step': step, 'aria-hidden': step !== 0 },
@@ -1775,23 +1774,13 @@ const clientTestimonials = [
     tag: 'Ombré Shading',
     rating: 5,
     location: 'Chrompet, Chennai',
-    quote: 'Immaculately clean, sterile atelier and bespoke definition. The most comfortable aesthetic experience in Chennai.',
+    quote: 'European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs.',
     variant: 'bubble--corner-avatar',
     floatClass: 'float-drift-2'
   },
-  {
-    id: 'nandhini',
-    name: 'Nandhini K.',
-    photo: 'assets/client-6.jpg',
-    service: 'BB Glow Radiance',
-    category: 'skin',
-    tag: 'BB Glow',
-    rating: 5,
-    location: 'Chrompet, Chennai',
-    quote: 'Instant lit-from-within complexion with zero downtime. My daily morning makeup routine dropped to five minutes.',
-    variant: 'bubble--leaf',
-    floatClass: 'float-drift-3'
-  }
+  {"id":"nandhini","name":"Nandhini K","role":"Customer","service":"Customer","quote":"Finally, brows that suit my face! I loved how Preethi customized the shape instead of following a standard brow design. The whole experience was professional, hygienic and very comfortable. Definitely worth it!","category":"brows"},
+  {"id":"lavanya","name":"Lavanya","role":"Doctor","service":"Doctor","quote":"European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs.","category":"brows"},
+  {"id":"ankush","name":"Ankush","role":"Anchor","service":"Anchor","quote":"Such a lovely experience! From the consultation to the treatment, everything was handled with so much care. Preethi is very detail-oriented and makes sure you feel heard and comfortable. Highly recommend Dermaphi!","category":"brows"}
 ];
 
 function ThreeTestimonialsCanvas() {
@@ -1875,7 +1864,7 @@ function HomeTestimonials() {
             h('span', { className: 'heading-line heading-line--accent' }, h('em', null, 'Lasting Confidence.'))
           ),
           h('p', { className: 'testimonials-subhead' },
-            'Hear from our satisfied clients who have experienced bespoke brow symmetry, watercolor lips, and clinical skin rejuvenation with Preethi Sadha.'
+            'Hear from our satisfied clients who have experienced bespoke PMU at Dermaphi Aesthetics.'
           )
         ),
         h('a', {
@@ -1907,17 +1896,6 @@ function HomeTestimonials() {
               key: item.id,
               className: 'reborn-review-card'
             },
-              // Floating Avatar top-left
-              h('div', { className: 'reborn-avatar-bubble' },
-                h('img', {
-                  src: item.photo,
-                  alt: item.name + ' - ' + item.service,
-                  className: 'reborn-avatar-img',
-                  width: 58,
-                  height: 58,
-                  loading: 'lazy'
-                })
-              ),
               // Decorative Quote Watermark top-right
               h('svg', {
                 className: 'reborn-quote-watermark',
@@ -2166,6 +2144,15 @@ function StudioCredentials() {
     }, paused ? '▶' : 'Ⅱ'));
 }
 
+function LipComparison() {
+  return h('div', { className: 'lip-comparison', role: 'group', 'aria-label': 'Lip treatment before and after' },
+    [['client-6.jpg', 'Before'], ['client-7.jpg', 'After']].map(([src, label], index) =>
+      h('div', { key: label, className: 'lip-comparison-panel' + (index === 0 ? ' lip-comparison-before' : '') },
+        h('div', { className: 'lip-comparison-image' },
+          h('img', { src: 'assets/' + src, alt: label + ' lip treatment', loading: 'lazy', draggable: false })),
+        h('span', null, label))));
+}
+
 function HomePortfolio() {
   const [showLips, setShowLips] = useState(false);
   return h('section', { id: 'studio-work', className: 'studio-portfolio home-portfolio', 'aria-labelledby': 'home-portfolio-title' },
@@ -2177,51 +2164,42 @@ function HomePortfolio() {
           h('button', { type: 'button', 'aria-pressed': !showLips, 'aria-controls': 'home-portfolio-example', onClick: () => setShowLips(false) }, 'Brow artistry'),
           h('button', { type: 'button', 'aria-pressed': showLips, 'aria-controls': 'home-portfolio-example', onClick: () => setShowLips(true) }, 'Lip blush')),
         h('p', { 'aria-live': 'polite' }, showLips
-          ? 'Look at how the rose tint follows the natural lip shape. Bring a shade you wear often to discuss the colour you’d like.'
+          ? 'Look how lip neutralization helps balance uneven or darker lip tones, creating a more even-looking, natural lip colour.'
           : 'Compare the brow mapping with the finished shape. Look for the softer front and the definition through the arch and tail.'),
         link('Explore the full gallery ↗', url('results') + '#client-portfolio', 'text-link')),
       h('figure', { id: 'home-portfolio-example', className: 'portfolio-feature' },
         showLips
-          ? h('div', { className: 'portfolio-lip-closeup', key: 'lips' }, h('img', { src: 'assets/hero-lip-blush.jpg', alt: 'Close-up of a client’s rose-tinted lips', loading: 'lazy' }))
+          ? h(LipComparison)
           : h('div', { className: 'portfolio-brow-pair', key: 'brows' },
             ['Before · Brow mapping', 'After · Finished brows'].map((label, index) => h('div', { key: label },
               h('div', { className: 'portfolio-brow-crop' }, h('img', { src: 'assets/hero-brow-artistry.jpg', alt: index === 0 ? 'Brow shape outlined before treatment' : 'Finished brows with a defined arch', loading: 'lazy' })),
               h('span', null, label)))),
-        h('figcaption', null, showLips ? 'Lip blush · Client close-up' : 'Brow artistry · Client before and after'))));
+        h('figcaption', null, showLips ? 'Lip neutralization · Before & after' : 'Brow artistry · Client before and after'),
+        showLips && h('p', { className: 'lip-healing-note' }, 'Swelling is normal and usually settles within 24–48 hours. Final results become clearer as the lips heal.'))));
 }
 
 function HomeFounder() {
-  const photoGrid = React.useRef(null);
+  const photoCard = React.useRef(null);
   useEffect(() => {
-    const grid = photoGrid.current;
+    const card = photoCard.current;
     const motion = window.Motion;
-    if (!grid || !motion?.inView || !motion?.scroll) return;
+    if (!card || !motion?.inView) return;
     const preference = matchMedia('(prefers-reduced-motion: no-preference)');
-    const tiles = Array.from(grid.children);
     let stopWatching;
-    let stopScroll;
-    let reveals = [];
+    let animation;
     function stop() {
       stopWatching?.();
-      stopScroll?.();
-      reveals.forEach(animation => animation.cancel());
-      reveals = [];
-      grid.style.removeProperty('--founder-scroll');
+      animation?.cancel();
     }
     function update() {
       stop();
       if (!preference.matches) return;
-      stopWatching = motion.inView(grid, () => {
-        reveals = tiles.map((tile, index) => motion.animate(tile, {
-          clipPath: [
-            index % 2 ? 'inset(0% 100% 0% 0%)' : 'inset(100% 0% 0% 0%)',
-            'inset(0% 0% 0% 0%)'
-          ]
-        }, { duration: .82, delay: index * .12, ease: [.22, .75, .25, 1] }));
-      }, { amount: .22 });
-      stopScroll = motion.scroll(progress => {
-        grid.style.setProperty('--founder-scroll', (progress - .5) * 2);
-      }, { target: grid, offset: ['start end', 'end start'] });
+      stopWatching = motion.inView(card, () => {
+        animation = motion.animate(card, {
+          opacity: [0.6, 1],
+          transform: ['translateY(24px)', 'translateY(0px)']
+        }, { duration: 0.85, ease: [0.22, 0.75, 0.25, 1] });
+      }, { amount: 0.2 });
     }
     update();
     preference.addEventListener('change', update);
@@ -2231,34 +2209,56 @@ function HomeFounder() {
     };
   }, []);
 
-  const portraits = [
-    ['preethi-founder-portrait', 'Preethi Sadha in a close-up portrait', 960, 1280],
-    ['preethi-founder-at-desk', 'Preethi Sadha seated at a desk', 1280, 960],
-    ['preethi-founder-outdoors', 'Preethi Sadha outdoors beneath string lights', 960, 1280],
-    ['preethi-founder-seated', 'Preethi Sadha seated in a red floral dress', 960, 1280]
-  ];
   return h('section', { className: 'founder-journal section', 'aria-labelledby': 'founder-journal-title' },
     h('div', { className: 'wrap founder-journal-grid' },
       h('div', { className: 'founder-journal-copy' },
         h('p', { className: 'eyebrow' }, 'DERMAPHI / THE FOUNDER'),
         h('h2', { id: 'founder-journal-title' }, 'Meet Preethi Sadha.'),
         h('p', { className: 'founder-journal-lede' }, 'Start with the look you already wear and feel good in.'),
-        h('p', null, 'Preethi is the founder of Dermaphi Aesthetics and a certified PhiBrows artist in Chrompet, Chennai. If you usually pencil in just the tail of your brows or wear a sheer lip tint, bring that detail to your consultation. It gives you both a starting point for choosing a shape or shade.'),
-        link('More about Preethi ↗', url('about') + '#preethi-photo-story', 'text-link')),
-      h('figure', { className: 'founder-journal-gallery' },
-        h('div', { className: 'founder-journal-photos', ref: photoGrid }, portraits.map(([name, alt, width, height]) =>
-          h('div', { key: name, className: 'founder-photo-tile', ...heroPointer },
-            h('img', { src: 'assets/' + name + '.jpg', alt, width, height, loading: 'lazy', decoding: 'async' })))),
-        h('figcaption', null, h('span', null, 'Preethi Sadha'), h('span', null, 'Founder · Dermaphi Aesthetics')))));
+        h('p', null, 'Preethi is the founder of Dermaphi Aesthetics and a certified PMU & PhiBrows artist in Chennai. If you usually pencil in your brows or wear a sheer lip tint, bring that detail to your consultation. It gives you both a starting point for choosing a shape or shade that beautifully compliments your natural features.'),
+        h('div', { className: 'founder-accreditations-row' },
+          h('div', { className: 'accreditation-pill' },
+            h('span', { className: 'phi-mark' }, 'Φ'),
+            h('span', null, 'Certified PhiBrows Artist')
+          ),
+          h('div', { className: 'accreditation-pill' },
+            h('span', { className: 'pmu-mark' }, '★'),
+            h('span', null, 'Grand PMU India Artist')
+          )
+        ),
+        link('More about Preethi ↗', url('about'), 'text-link')
+      ),
+      h('figure', { className: 'founder-journal-showcase' },
+        h('div', { className: 'founder-portrait-frame', ref: photoCard, ...heroPointer },
+          h('img', {
+            src: 'assets/preethi-founder-home.jpg',
+            alt: 'Preethi Sadha, Founder and Master PMU Artist at Dermaphi Aesthetics in Chennai',
+            width: 768,
+            height: 1024,
+            loading: 'lazy',
+            decoding: 'async'
+          }),
+          h('div', { className: 'founder-portrait-badge' },
+            h('span', { className: 'badge-role' }, 'Master PMU Artist'),
+            h('span', { className: 'badge-location' }, 'Chrompet, Chennai')
+          )
+        ),
+        h('figcaption', null,
+          h('span', null, 'Preethi Sadha'),
+          h('span', null, 'Founder · Dermaphi Aesthetics')
+        )
+      )
+    )
+  );
 }
 
 function ServiceGuide() {
   const [selection, setSelection] = useState(0);
   const options = [
     ['Brows', 'brows-and-lips', 'Choose fine hair strokes for sparse areas, powder shading for soft depth, or a combination of both.'],
-    ['Lips', 'lip-enhancements', 'Bring a lip shade you already wear. Preethi can help you compare a sheer tint with a more defined finish.'],
+    ['Lips', 'lip-enhancements', 'Reveal the beauty of naturally balanced lips. Lip neutralization gently corrects darker or uneven tones, helping achieve a softer, fresher and more even-looking lip colour.'],
     ['Scalp', 'scalp-enhancement', 'Explore scalp micropigmentation if you want to discuss how the appearance of thinning areas could be softened.'],
-    ['Skincare', 'advanced-skincare', 'Tell Preethi what you want to work on, such as texture or uneven tone, before choosing a service.']
+    ['Skincare', 'advanced-skincare', 'Tell us what you want to work on, such as texture or uneven tone, before choosing a service.']
   ];
   const [label, id, copy] = options[selection];
   return h('section', { className: 'wrap studio-section studio-services mobile-service-guide', 'aria-labelledby': 'studio-services-title' },
@@ -2278,8 +2278,8 @@ function StudioHome() {
   const [slide, setSlide] = useState({ index: 0, previous: null, direction: 1, revision: 0 });
   const feature = slide.index;
   const features = [
-    { label: 'Inside the studio', title: 'Artistry in', accent: 'every detail.', copy: 'At your consultation, tell Preethi how you wear your brows or lips day to day. Together you can talk through shape, colour and the finish you want.', image: 'dermaphi-studio-banner.png', alt: 'Preethi Sadha wearing gloves and a mask while working on a client’s brows' },
-    { label: 'Meet Preethi', title: 'A personal touch', accent: 'in every detail.', copy: 'Meet Preethi Sadha and talk through the shape or colour that feels right for you.', image: 'dermaphi-founder-banner.png', alt: 'Preethi Sadha holding a brow measuring tool beside a photo of her at work' }
+    { label: 'Inside the studio', title: 'Artistry in', accent: 'every detail.', copy: 'At your consultation, tell Preethi how you wear your brows or lips day to day. Together you can talk through shape, colour and the finish you want.', image: 'dermaphi-studio-banner.png', alt: 'Precision microblading and cosmetic artistry at Dermaphi studio' },
+    { label: 'Bespoke Results', title: 'Quiet Luxury', accent: 'for every feature.', copy: 'From natural hair-stroke microblading to velvety lip blushing, every treatment is calibrated to your unique facial geometry and skin tone.', image: 'hero-brow-artistry.jpg', alt: 'Healed microblading and lip blush results' }
   ];
   function browse(step) {
     setSlide(current => ({
@@ -2377,25 +2377,26 @@ function FinishFinder() {
 }
 
 function FounderNote() {
-  const photo = React.useRef(null);
-  useEffect(() => {
-    if (!window.Motion?.inView || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
-    let animation;
-    const stop = Motion.inView(photo.current, element => {
-      animation = Motion.animate(element, { clipPath: ['inset(0 0 35% 0 round 12px)', 'inset(0 0 0% 0 round 12px)'], opacity: [.6, 1] }, { duration: .7, ease: [.22, .75, .25, 1] });
-    });
-    return () => { stop(); animation?.stop(); };
-  }, []);
-  return h('section', { className: 'wrap section founder-note', 'data-reveal': '' },
-    h('div', null, h('p', { className: 'eyebrow' }, 'A NOTE FROM OUR FOUNDER'),
+  return h('section', { className: 'wrap section founder-note', id: 'founder-note', 'data-reveal': '' },
+    h('div', null,
+      h('p', { className: 'eyebrow' }, 'A NOTE FROM OUR FOUNDER'),
       h('h2', null, 'A vision rooted in artistry and natural beauty'),
       h('blockquote', null,
         h('p', null, 'At Dermaphi Aesthetics, my vision is to celebrate individuality through the art of enhancing natural beauty. As a certified PhiBrows Artist, Permanent Makeup Specialist and Trainer, I believe every face has its own character. Every enhancement should be thoughtfully designed to complement it.'),
         h('p', null, 'I bring precision, creativity and a commitment to continuous learning to each treatment. I’m equally passionate about sharing what I know and helping aspiring artists develop their skills through professional PMU training.'),
         h('p', null, 'Thank you for being part of the Dermaphi journey. I look forward to hearing what feels right for you.'),
-        h('cite', null, 'Preethi Sadha · Founder and PMU Artist'))),
-    h('figure', { ref: photo }, h('img', { src: 'assets/client-1.jpg', alt: 'Grand PMU India 2024 participant announcement featuring Preethi Sadha Mohan', loading: 'lazy' }),
-      h('figcaption', null, 'Participant · Grand PMU India 2024, Chennai')));
+        h('cite', null, 'Preethi Sadha · Founder and PMU Artist')
+      )
+    ),
+    h('figure', { className: 'founder-award-photo' },
+      h('img', {
+        src: 'assets/preethi-grand-pmu-india-2024.jpg',
+        alt: 'Grand PMU India 2024 conference and awards participant poster featuring Preethi Sadha Mohan',
+        width: 1080, height: 1080, loading: 'lazy', decoding: 'async'
+      }),
+      h('figcaption', null, 'Preethi Sadha Mohan · Participant, Grand PMU India 2024, Chennai'))
+
+  );
 }
 function TreatmentPrepAndFAQ() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -2878,7 +2879,7 @@ function ResultsHero() {
       desc: 'Precision golden ratio hair strokes mapped to natural facial bone structure.'
     },
     lips: {
-      image: 'hero-lip-blush.jpg',
+      image: 'client-6.jpg',
       title: 'Watercolor Lip Blush Tint',
       desc: 'Sheer rosy pigment that defines perimeter and restores youthful contour.'
     },
@@ -2921,7 +2922,7 @@ function ResultsHero() {
             h('span', { className: 'lens-badge' }, h(DecryptedText, { text: 'STUDIO LENS' }))
           ),
           h('div', { className: 'lens-viewport', key: lens },
-            h('img', { src: 'assets/' + activeData.image, alt: activeData.title, loading: 'lazy' }),
+            activeData.image === 'client-6.jpg' ? h(LipComparison) : h('img', { src: 'assets/' + activeData.image, alt: activeData.title, loading: 'lazy' }),
             h('div', { className: 'lens-overlay' },
               h('h3', null, activeData.title),
               h('p', null, activeData.desc)
@@ -2949,14 +2950,14 @@ function AboutHero() {
         }),
         h('p', { className: 'modern-hero-desc' }, 'Preethi founded Dermaphi Aesthetics in Chrompet, Chennai, where she offers permanent makeup and trains artists.'),
         h('div', { className: 'actions modern-hero-actions' },
-          link('Preethi’s Studio Story ↓', url('about') + '#preethi-photo-story', 'button'),
+          link('Preethi’s Studio Story ↓', url('about') + '#founder-note', 'button'),
           link('Book a Consultation ↗', booking, 'text-link')
         )
       ),
       h('div', { className: 'modern-hero-spotlight' },
         h(SpotlightCard, { className: 'about-portrait-card motion-surface', ...highlightEvents },
           h('div', { className: 'portrait-frame' },
-            h('img', { src: 'assets/preethi-founder-portrait.jpg', alt: 'Preethi Sadha in close-up portrait', loading: 'eager' }),
+            h('img', { src: 'assets/preethi-founder-about.jpg', alt: 'Preethi Sadha, Founder and Master PMU Artist at Dermaphi Aesthetics', loading: 'eager' }),
             h('span', { className: 'portrait-gold-seal', 'aria-hidden': 'true' }, 'Φ')
           ),
           h('div', { className: 'portrait-meta' },
@@ -3061,7 +3062,7 @@ function ArtistryStandards() {
     {
       num: '02',
       icon: PigmentIcon,
-      title: 'European PhiAcademy Pigments',
+      title: 'International standard pigments',
       desc: '100% hypoallergenic, heavy-metal-free pigments formulated to heal true-to-tone and never discolor into blue or red.'
     },
     {
