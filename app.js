@@ -1714,80 +1714,32 @@ const googleReviewsUrl = 'https://www.google.com/maps/search/?api=1&query='
 
 const clientTestimonials = [
   {
-    id: 'mohana',
-    name: 'MohanaPriya',
-    photo: 'assets/client-1.jpg',
-    service: 'Signature Lip Blush',
-    category: 'lips',
-    tag: 'Lip Blush',
-    rating: 5,
-    location: 'Chrompet, Chennai',
-    quote: 'A natural watercolor tint that gave my lips effortless color. I wake up every morning with a fresh, youthful glow.',
-    variant: 'bubble--arch-top',
-    floatClass: 'float-drift-1'
+    "id": "nandhini",
+    "name": "Nandhini K",
+    "role": "Customer",
+    "service": "Customer",
+    "quote": "Finally, brows that suit my face! I loved how Preethi customized the shape instead of following a standard brow design. The whole experience was professional, hygienic and very comfortable. Definitely worth it!"
   },
   {
-    id: 'uma',
-    name: 'Uma Maheshwari',
-    photo: 'assets/client-3.jpg',
-    service: 'Combination Brows',
-    category: 'brows',
-    tag: 'Bespoke Brows',
-    rating: 5,
-    location: 'Chrompet, Chennai',
-    quote: 'Golden ratio precision completely transformed my face symmetry. Hyper-realistic hair strokes with zero discomfort.',
-    variant: 'bubble--avatar-bottom',
-    floatClass: 'float-drift-2'
+    "id": "lavanya",
+    "name": "Lavanya",
+    "role": "Doctor",
+    "service": "Doctor",
+    "quote": "European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs."
   },
   {
-    id: 'vimala',
-    name: 'Vimala R.',
-    photo: 'assets/client-4.jpg',
-    service: 'PhiBrows Microblading',
-    category: 'brows',
-    tag: 'PhiAcademy',
-    rating: 5,
-    location: 'Chrompet, Chennai',
-    quote: 'European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs.',
-    variant: 'bubble--pebble',
-    floatClass: 'float-drift-3'
+    "id": "ankush",
+    "name": "Ankush",
+    "role": "Anchor",
+    "service": "Anchor",
+    "quote": "Such a lovely experience! From the consultation to the treatment, everything was handled with so much care. Preethi is very detail-oriented and makes sure you feel heard and comfortable. Highly recommend Dermaphi!"
   },
-  {
-    id: 'pavithra',
-    name: 'Pavithra S.',
-    photo: 'assets/client-2.jpg',
-    service: 'Radiance Chemical Peel',
-    category: 'skin',
-    tag: 'Chemical Peel',
-    rating: 5,
-    location: 'Chrompet, Chennai',
-    quote: 'Noticeably reduced pigmentation and gave my skin a dewy finish. Preethi is so gentle, calming, and reassuring.',
-    variant: 'bubble--pill',
-    floatClass: 'float-drift-1'
-  },
-  {
-    id: 'divya',
-    name: 'Divya Bharathi',
-    photo: 'assets/client-5.jpg',
-    service: 'Ombré Powder Brows',
-    category: 'brows',
-    tag: 'Ombré Shading',
-    rating: 5,
-    location: 'Chrompet, Chennai',
-    quote: 'European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs.',
-    variant: 'bubble--corner-avatar',
-    floatClass: 'float-drift-2'
-  },
-  {"id":"nandhini","name":"Nandhini K","role":"Customer","service":"Customer","quote":"Finally, brows that suit my face! I loved how Preethi customized the shape instead of following a standard brow design. The whole experience was professional, hygienic and very comfortable. Definitely worth it!","category":"brows"},
-  {"id":"lavanya","name":"Lavanya","role":"Doctor","service":"Doctor","quote":"European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs.","category":"brows"},
-  {"id":"ankush","name":"Ankush","role":"Anchor","service":"Anchor","quote":"Such a lovely experience! From the consultation to the treatment, everything was handled with so much care. Preethi is very detail-oriented and makes sure you feel heard and comfortable. Highly recommend Dermaphi!","category":"brows"},
   {
     "id": "vani",
     "name": "Vani",
     "role": "Customer",
     "service": "Customer",
-    "quote": "The result is so beautifully natural, and I love waking up with my brows already looking perfect. The attention to detail and care throughout the process made all the difference.",
-    "category": "brows"
+    "quote": "I’ve always struggled with getting my brows to look even, especially filling in the sparse areas every single day. Getting my eyebrows done at Dermaphi was honestly one of the best decisions! They took the time to understand what I wanted, carefully mapped out a shape that suited my face and made sure I was comfortable with every step. The result is so beautifully natural, and I love waking up with my brows already looking perfect. The attention to detail and care throughout the process made all the difference. Couldn’t be happier 😍"
   }
 ];
 
@@ -1882,14 +1834,7 @@ function HomeTestimonials() {
           className: 'google-review-pill',
           'aria-label': 'Read Google Reviews'
         },
-          h('span', { className: 'google-badge-star', 'aria-hidden': 'true' }, '★'),
-          h('div', { className: 'google-badge-meta' },
-            h('div', { className: 'google-badge-rating' },
-              h('strong', null, '5.0'),
-              h('span', { className: 'gold-stars' }, '★★★★★')
-            ),
-            h('span', { className: 'google-badge-count' }, '50+ Verified Client Reviews ↗')
-          )
+          h('span', null, 'More reviews on Google ↗')
         )
       ),
 
@@ -1915,7 +1860,6 @@ function HomeTestimonials() {
                 h('path', { d: 'M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z' })
               ),
               // Star Rating
-              h('div', { className: 'reborn-review-stars', 'aria-label': '5 out of 5 stars' }, '★★★★★'),
               // Review Quote
               h('blockquote', { className: 'reborn-review-quote' }, item.quote),
               // Reviewer Footer Info
@@ -1923,9 +1867,8 @@ function HomeTestimonials() {
                 h('h4', { className: 'reborn-client-name' }, item.name),
                 h('div', { className: 'reborn-service-pill' },
                   h('span', { className: 'pill-dot', 'aria-hidden': 'true' }, '✦'),
-                  h('span', { className: 'pill-service' }, item.service),
-                  h('span', { className: 'pill-sep', 'aria-hidden': 'true' }, '·'),
-                  h('span', { className: 'pill-verified' }, 'Verified Client')
+                  h('span', { className: 'pill-service' }, item.role)
+
                 )
               )
             )
