@@ -1780,7 +1780,15 @@ const clientTestimonials = [
   },
   {"id":"nandhini","name":"Nandhini K","role":"Customer","service":"Customer","quote":"Finally, brows that suit my face! I loved how Preethi customized the shape instead of following a standard brow design. The whole experience was professional, hygienic and very comfortable. Definitely worth it!","category":"brows"},
   {"id":"lavanya","name":"Lavanya","role":"Doctor","service":"Doctor","quote":"European PhiAcademy standards right in Chrompet. The strokes blend seamlessly with my natural brow hairs.","category":"brows"},
-  {"id":"ankush","name":"Ankush","role":"Anchor","service":"Anchor","quote":"Such a lovely experience! From the consultation to the treatment, everything was handled with so much care. Preethi is very detail-oriented and makes sure you feel heard and comfortable. Highly recommend Dermaphi!","category":"brows"}
+  {"id":"ankush","name":"Ankush","role":"Anchor","service":"Anchor","quote":"Such a lovely experience! From the consultation to the treatment, everything was handled with so much care. Preethi is very detail-oriented and makes sure you feel heard and comfortable. Highly recommend Dermaphi!","category":"brows"},
+  {
+    "id": "vani",
+    "name": "Vani",
+    "role": "Customer",
+    "service": "Customer",
+    "quote": "The result is so beautifully natural, and I love waking up with my brows already looking perfect. The attention to detail and care throughout the process made all the difference.",
+    "category": "brows"
+  }
 ];
 
 function ThreeTestimonialsCanvas() {
@@ -2214,8 +2222,8 @@ function HomeFounder() {
       h('div', { className: 'founder-journal-copy' },
         h('p', { className: 'eyebrow' }, 'DERMAPHI / THE FOUNDER'),
         h('h2', { id: 'founder-journal-title' }, 'Meet Preethi Sadha.'),
-        h('p', { className: 'founder-journal-lede' }, 'Start with the look you already wear and feel good in.'),
-        h('p', null, 'Preethi is the founder of Dermaphi Aesthetics and a certified PMU & PhiBrows artist in Chennai. If you usually pencil in your brows or wear a sheer lip tint, bring that detail to your consultation. It gives you both a starting point for choosing a shape or shade that beautifully compliments your natural features.'),
+        h('p', { className: 'founder-journal-lede' }, 'A personal approach to permanent makeup.'),
+        h('p', null, 'Preethi Sadha is the founder of Dermaphi Aesthetics and a certified PhiBrows artist in Chrompet, Chennai. Bring your everyday brow look or favourite lip shade to your consultation, and explore a finish that feels like you.'),
         h('div', { className: 'founder-accreditations-row' },
           h('div', { className: 'accreditation-pill' },
             h('span', { className: 'phi-mark' }, 'Φ'),
@@ -2279,7 +2287,7 @@ function StudioHome() {
   const feature = slide.index;
   const features = [
     { label: 'Inside the studio', title: 'Artistry in', accent: 'every detail.', copy: 'At your consultation, tell Preethi how you wear your brows or lips day to day. Together you can talk through shape, colour and the finish you want.', image: 'dermaphi-studio-banner.png', alt: 'Precision microblading and cosmetic artistry at Dermaphi studio' },
-    { label: 'Bespoke Results', title: 'Quiet Luxury', accent: 'for every feature.', copy: 'From natural hair-stroke microblading to velvety lip blushing, every treatment is calibrated to your unique facial geometry and skin tone.', image: 'hero-brow-artistry.jpg', alt: 'Healed microblading and lip blush results' }
+    { label: 'Bespoke Results', title: 'Quiet Luxury', accent: 'for every feature.', copy: 'From natural hair-stroke microblading to velvety lip blushing, every treatment is calibrated to your unique facial geometry and skin tone.', image: 'dermaphi-contact-editorial.png', alt: 'Preethi Sadha against an ivory arch' }
   ];
   function browse(step) {
     setSlide(current => ({
@@ -2318,7 +2326,7 @@ function StudioHome() {
       h('img', { src: 'assets/' + item.image, alt: incoming ? item.alt : '', fetchPriority: incoming && !slide.revision ? 'high' : 'auto' }));
   }
   return h('div', { className: 'studio-home' },
-    h('section', { className: 'home-banner-carousel', 'data-theme': 'dark', 'aria-label': 'Dermaphi highlights', ref: autoplay.region },
+    h('section', { className: 'home-banner-carousel', 'data-theme': feature === 1 ? 'ivory' : 'dark', 'aria-label': 'Dermaphi highlights', ref: autoplay.region },
 
       h('div', { className: 'home-banner-art' },
         slide.previous !== null && banner(slide.previous, false),
@@ -2330,7 +2338,7 @@ function StudioHome() {
               key: feature,
               title: current.title,
               accent: current.accent,
-              theme: 'dark',
+              theme: feature === 1 ? 'light' : 'dark',
               className: 'hero-banner-heading'
             }),
             h('p', null, current.copy)
