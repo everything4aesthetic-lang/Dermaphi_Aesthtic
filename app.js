@@ -2096,12 +2096,15 @@ function StudioCredentials() {
 }
 
 function LipComparison() {
-  return h('div', { className: 'lip-comparison', role: 'group', 'aria-label': 'Lip treatment before and after' },
-    [['client-6.jpg', 'Before'], ['client-7.jpg', 'After']].map(([src, label], index) =>
-      h('div', { key: label, className: 'lip-comparison-panel' + (index === 0 ? ' lip-comparison-before' : '') },
-        h('div', { className: 'lip-comparison-image' },
-          h('img', { src: 'assets/' + src, alt: label + ' lip treatment', loading: 'lazy', draggable: false })),
-        h('span', null, label))));
+  const items = [
+    ['lip-blush-before.jpg', 'Before · Natural tone', 'Dark or uneven natural lip tone before treatment'],
+    ['lip-blush-after.jpg', 'After · Blushed finish', 'Healed radiant lip blush with defined contour and warmth']
+  ];
+  return h('div', { className: 'portfolio-lip-pair lip-comparison', role: 'group', 'aria-label': 'Lip blush client before and after' },
+    items.map(([src, label, alt]) => h('div', { key: label },
+      h('div', { className: 'portfolio-lip-crop' },
+        h('img', { src: 'assets/' + src, alt, loading: 'lazy', draggable: false })),
+      h('span', null, label))));
 }
 
 function HomePortfolio() {

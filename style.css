@@ -4938,7 +4938,8 @@ html {
   min-width: 0;
 }
 
-.portfolio-brow-pair {
+.portfolio-brow-pair,
+.portfolio-lip-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2px;
@@ -4946,16 +4947,44 @@ html {
 }
 
 .portfolio-brow-pair,
+.portfolio-lip-pair,
 .portfolio-lip-closeup {
   overflow: hidden;
   border: 1px solid #aa756e;
   border-radius: 20px;
 }
 
+.portfolio-brow-pair > div,
+.portfolio-lip-pair > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .portfolio-brow-crop {
   position: relative;
   aspect-ratio: 2 / 1;
   overflow: hidden;
+}
+
+.portfolio-lip-crop {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #1c0b16;
+}
+
+.portfolio-lip-crop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 70%;
+  display: block;
+  transition: transform .45s ease;
+}
+
+.portfolio-lip-crop:hover img {
+  transform: scale(1.05);
 }
 
 .portfolio-brow-crop img {
@@ -4970,12 +4999,14 @@ html {
   inset: auto auto 0 0;
 }
 
-.portfolio-brow-pair span {
+.portfolio-brow-pair span,
+.portfolio-lip-pair span {
   display: block;
   padding: 8px 12px;
   background: var(--brand-dark);
   color: #fff8ee;
   font-size: 12px;
+  letter-spacing: 0.02em;
 }
 
 .portfolio-lip-closeup {
@@ -14897,34 +14928,47 @@ canvas {
 .lip-comparison {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
   overflow: hidden;
   width: 100%;
-  border: 1px solid #d8b3a4;
-  border-radius: 14px;
-  background: #301522;
+  border: 1px solid #aa756e;
+  border-radius: 20px;
+  background: #aa756e;
 }
-.lip-comparison-panel { min-width: 0; position: relative; }
-.lip-comparison-panel + .lip-comparison-panel { border-left: 2px solid #fff6ed; }
-.lip-comparison-image { position: relative; overflow: hidden; aspect-ratio: 1 / 1; }
-.lip-comparison .lip-comparison-image img {
-  position: absolute;
-  inset: 0;
+.lip-comparison > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lip-comparison-image,
+.portfolio-lip-crop {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #1c0b16;
+}
+.lip-comparison img,
+.portfolio-lip-crop img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 66%;
-  transform: none;
+  object-position: 50% 70%;
+  display: block;
 }
-.lip-comparison .lip-comparison-before img { transform: rotate(-90deg) scale(1.2); object-position: center; }
-.lip-comparison-panel > span { display: block; padding: 6px 10px; font-size: 13px; color: #fff6ed; }
+.lip-comparison span,
+.portfolio-lip-pair span {
+  display: block;
+  padding: 8px 12px;
+  background: var(--brand-dark, #2b1424);
+  color: #fff8ee;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
 .lip-healing-note { margin: 8px 0 0; font-size: 13px; line-height: 1.5; }
 .reborn-review-card > .lip-comparison { margin: 8px 0 14px; }
 .review-initial { display: grid; place-items: center; width: 100%; height: 100%; background: #f2ddd4; color: #64253f; font: 28px Georgia, serif; }
 .depth-card > .lip-comparison { height: 100%; align-content: center; }
 .lens-viewport > .lip-comparison { height: 100%; align-content: center; }
-@media (max-width: 480px) {
-  .lip-comparison-panel > span { padding: 5px 8px; }
-}
 
 .home-testimonials .reborn-review-card {
   margin-top: 0;
