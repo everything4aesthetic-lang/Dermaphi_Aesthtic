@@ -15059,3 +15059,30 @@ canvas {
   color: #8b3c57;
   -webkit-text-fill-color: #8b3c57;
 }
+
+.founder-journal .accreditation-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 100%;
+  padding: 7px 11px;
+  border: 1px solid #dfc2b5;
+  border-radius: 99px;
+  background: #fff8f1;
+  color: #48182c;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.founder-journal .founder-credential-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #cea478;
+  border-radius: 50%;
+  background: #f5e4cf;
+  color: #68283e;
+}
+.founder-credential-icon svg { display: block; width: 19px; height: 19px; overflow: visible; }
+.founder-journal .founder-accreditations-row { gap: 8px; }

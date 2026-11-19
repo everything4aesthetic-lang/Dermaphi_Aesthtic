@@ -2226,11 +2226,16 @@ function HomeFounder() {
         h('p', null, 'Preethi Sadha is the founder of Dermaphi Aesthetics and a certified PhiBrows artist in Chrompet, Chennai. Bring your everyday brow look or favourite lip shade to your consultation, and explore a finish that feels like you.'),
         h('div', { className: 'founder-accreditations-row' },
           h('div', { className: 'accreditation-pill' },
-            h('span', { className: 'phi-mark' }, 'Φ'),
+            h('span', { className: 'founder-credential-icon', 'aria-hidden': 'true' },
+              h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', focusable: 'false' },
+                h('ellipse', { cx: 12, cy: 12, rx: 7, ry: 5 }),
+                h('path', { d: 'M12 3v18M9 3h6M9 21h6' }))),
             h('span', null, 'Certified PhiBrows Artist')
           ),
           h('div', { className: 'accreditation-pill' },
-            h('span', { className: 'pmu-mark' }, '★'),
+            h('span', { className: 'founder-credential-icon', 'aria-hidden': 'true' },
+              h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinejoin: 'round', focusable: 'false' },
+                h('path', { d: 'm12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z' }))),
             h('span', null, 'Grand PMU India Artist')
           )
         ),
