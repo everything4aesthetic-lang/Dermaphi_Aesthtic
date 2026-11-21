@@ -1564,6 +1564,10 @@ const studioPhotos = [
 ];
 
 const clientPhotos = [
+  ["brow-comparison-nov2026.jpg","Brow shape · Before & after","Compare the brow outline and definition in these client photos."],
+  ["brow-finished-nov2026.jpg","Finished brows · Front view","A closer look at the finished arch and brow definition."],
+  ["brow-definition-nov2026.jpg","Brow definition · Before & after","Compare the shape and fullness across the two photos."],
+  ["brow-strokes-nov2026.jpg","Brow strokes · Before & after","See the individual strokes and shape in this close-up comparison."],
   ['client-2.jpg', 'Brow portfolio · defined arches', 'Look at how the shape and definition change across the two photos.'],
   ['client-3.jpg', 'Brow portfolio · fuller outline', 'Bring a reference if you want to discuss more definition through the brow.'],
   ['client-4.jpg', 'Brow portfolio · front view', 'Notice the shape from the front of the brow through the tail.'],
@@ -1709,12 +1713,12 @@ function resetHeroPerspective(event) {
 }
 const heroPointer = { onPointerMove: moveHeroPerspective, onPointerLeave: resetHeroPerspective };
 
-const googleReviewsUrl = 'https://www.google.com/maps/search/?api=1&query='
-  + encodeURIComponent('Dermaphi Aesthetics, ' + studioAddress);
+const googleReviewsUrl = 'https://maps.app.goo.gl/rq9WuboypWe8wd3K9';
 
 const clientTestimonials = [
   {
     "id": "nandhini",
+    "resultImage": "brow-finished-nov2026.jpg",
     "name": "Nandhini K",
     "role": "Customer",
     "service": "Customer",
@@ -1722,6 +1726,7 @@ const clientTestimonials = [
   },
   {
     "id": "lavanya",
+    "resultImage": "brow-comparison-nov2026.jpg",
     "name": "Lavanya",
     "role": "Doctor",
     "service": "Doctor",
@@ -1729,6 +1734,7 @@ const clientTestimonials = [
   },
   {
     "id": "ankush",
+    "resultImage": "brow-mapping-nov2026.jpg",
     "name": "Ankush",
     "role": "Anchor",
     "service": "Anchor",
@@ -1736,6 +1742,7 @@ const clientTestimonials = [
   },
   {
     "id": "vani",
+    "resultImage": "brow-definition-nov2026.jpg",
     "name": "Vani",
     "role": "Customer",
     "service": "Customer",
@@ -1747,15 +1754,13 @@ function ThreeTestimonialsCanvas() {
   return null;
 }
 
-// Luminous Spotlight Testimonial Showcase with Interactive Client Tabs
-// Unique Floating Speech-Bubble Testimonial Cloud (Inspired by Client Inspiration)
-// Premium Luxury Testimonial Carousel with Reduced Punchy Quotes
-// Reborn-Inspired Luxury Client Testimonials Multi-Card Carousel
+// Reborn-Inspired Luxury Client Testimonials Multi-Card Slider Carousel
 function HomeTestimonials() {
   const [pageIndex, setPageIndex] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(3);
   const [isPaused, setIsPaused] = useState(false);
   const [animating, setAnimating] = useState(false);
+  const touchStart = React.useRef(null);
 
   useEffect(() => {
     function updateCards() {
@@ -1783,7 +1788,7 @@ function HomeTestimonials() {
     setTimeout(() => {
       setPageIndex(p);
       setAnimating(false);
-    }, 200);
+    }, 220);
   }
 
   function move(step) {
@@ -1805,7 +1810,19 @@ function HomeTestimonials() {
     className: 'home-testimonials modern-testimonials-section section',
     'aria-label': 'Client testimonials',
     onMouseEnter: () => setIsPaused(true),
-    onMouseLeave: () => setIsPaused(false)
+    onMouseLeave: () => setIsPaused(false),
+    onTouchStart: e => {
+      touchStart.current = e.touches[0].clientX;
+      setIsPaused(true);
+    },
+    onTouchEnd: e => {
+      if (touchStart.current !== null) {
+        const delta = e.changedTouches[0].clientX - touchStart.current;
+        if (Math.abs(delta) > 40) move(delta < 0 ? 1 : -1);
+        touchStart.current = null;
+      }
+      setIsPaused(false);
+    }
   },
     // Atmospheric animated ambient background
     h('div', { className: 'testimonials-bg-ambient', 'aria-hidden': 'true' },
@@ -1834,7 +1851,14 @@ function HomeTestimonials() {
           className: 'google-review-pill',
           'aria-label': 'Read Google Reviews'
         },
-          h('span', null, 'More reviews on Google ↗')
+          h('span', { className: 'google-badge-star', 'aria-hidden': 'true' }, '★'),
+          h('div', { className: 'google-badge-meta' },
+            h('div', { className: 'google-badge-rating' },
+              h('strong', null, '5.0'),
+              h('span', { className: 'gold-stars' }, '★★★★★')
+            ),
+            h('span', { className: 'google-badge-count' }, '50+ Verified Client Reviews ↗')
+          )
         )
       ),
 
@@ -1849,17 +1873,23 @@ function HomeTestimonials() {
               key: item.id,
               className: 'reborn-review-card'
             },
-              // Decorative Quote Watermark top-right
-              h('svg', {
-                className: 'reborn-quote-watermark',
-                viewBox: '0 0 24 24',
-                fill: 'currentColor',
-                'aria-hidden': 'true',
-                focusable: 'false'
-              },
-                h('path', { d: 'M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z' })
+              // Card Top Header: Stars & Verified Badge on left, Quote watermark on right
+              h('div', { className: 'reborn-card-header' },
+                h('img', { className: 'review-profile-thumb', src: 'assets/' + item.resultImage, alt: '', width: 48, height: 48, loading: 'lazy', decoding: 'async' }),
+                h('div', { className: 'reborn-rating-box' },
+                  h('div', { className: 'reborn-review-stars', 'aria-label': '5 out of 5 stars' }, '★★★★★'),
+                  h('span', { className: 'reborn-verified-pill' }, 'Verified Visit')
+                ),
+                h('svg', {
+                  className: 'reborn-quote-watermark',
+                  viewBox: '0 0 24 24',
+                  fill: 'currentColor',
+                  'aria-hidden': 'true',
+                  focusable: 'false'
+                },
+                  h('path', { d: 'M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z' })
+                )
               ),
-              // Star Rating
               // Review Quote
               h('blockquote', { className: 'reborn-review-quote' }, item.quote),
               // Reviewer Footer Info
@@ -1867,8 +1897,9 @@ function HomeTestimonials() {
                 h('h4', { className: 'reborn-client-name' }, item.name),
                 h('div', { className: 'reborn-service-pill' },
                   h('span', { className: 'pill-dot', 'aria-hidden': 'true' }, '✦'),
-                  h('span', { className: 'pill-service' }, item.role)
-
+                  h('span', { className: 'pill-service' }, item.role),
+                  h('span', { className: 'pill-sep', 'aria-hidden': 'true' }, '·'),
+                  h('span', { className: 'pill-verified' }, 'Dermaphi Atelier')
                 )
               )
             )
@@ -1925,7 +1956,6 @@ function HomeTestimonials() {
   );
 }
 
-// ReactBits Pro FAQ-9: FAQ Grid with Sticky Contact Panel
 function HomeFAQ9() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [openItem, setOpenItem] = useState('q1');
