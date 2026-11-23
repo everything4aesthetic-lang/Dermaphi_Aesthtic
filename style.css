@@ -15151,3 +15151,42 @@ canvas {
 @media (max-width: 680px) {
   .home-testimonials .review-profile-thumb { width: 42px; height: 42px; flex-basis: 42px; }
 }
+
+.home-testimonials .review-profile-frame {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #cda574;
+  background: #fff;
+}
+.home-testimonials .review-profile-frame .review-profile-thumb {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+}
+.home-testimonials .review-profile-frame[data-review="nandhini"] .review-profile-thumb { object-position: 50% 58%; }
+.home-testimonials .review-profile-frame[data-review="ankush"] .review-profile-thumb { object-position: 50% 47%; }
+.home-testimonials .review-profile-frame[data-review="lavanya"] .review-profile-thumb,
+.home-testimonials .review-profile-frame[data-review="vani"] .review-profile-thumb { object-fit: fill; }
+.home-testimonials .review-profile-frame[data-review="lavanya"]::after,
+.home-testimonials .review-profile-frame[data-review="vani"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fff;
+  pointer-events: none;
+}
+@media (max-width: 680px) {
+  .home-testimonials .review-profile-frame { width: 48px; height: 48px; flex-basis: 48px; }
+}

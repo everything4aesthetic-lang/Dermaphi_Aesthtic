@@ -1875,7 +1875,8 @@ function HomeTestimonials() {
             },
               // Card Top Header: Stars & Verified Badge on left, Quote watermark on right
               h('div', { className: 'reborn-card-header' },
-                h('img', { className: 'review-profile-thumb', src: 'assets/' + item.resultImage, alt: '', width: 48, height: 48, loading: 'lazy', decoding: 'async' }),
+                h('span', { className: 'review-profile-frame', 'data-review': item.id, 'aria-hidden': 'true' },
+                  h('img', { className: 'review-profile-thumb', src: 'assets/' + item.resultImage, alt: '', width: 48, height: 48, loading: 'lazy', decoding: 'async' })),
                 h('div', { className: 'reborn-rating-box' },
                   h('div', { className: 'reborn-review-stars', 'aria-label': '5 out of 5 stars' }, '★★★★★'),
                   h('span', { className: 'reborn-verified-pill' }, 'Verified Visit')
