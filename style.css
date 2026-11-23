@@ -15179,3 +15179,24 @@ canvas {
   .home-testimonials .reborn-card-header { gap: 10px; }
   .home-testimonials .reborn-card-header .reborn-quote-watermark { display: none; }
 }
+/* A sliding, seamless loop: four reviews, one card advanced at a time. */
+.home-testimonials .reborn-carousel-stage { overflow: hidden; padding: 8px 2px 20px; }
+.home-testimonials .review-loop-track {
+  display: flex;
+  gap: 24px;
+  animation: none;
+  transform: translate3d(calc(var(--review-index) * -1 * (100% + 24px) / var(--review-count)), 0, 0);
+  transition: transform 700ms cubic-bezier(.22,.61,.36,1);
+  align-items: stretch;
+  touch-action: pan-y;
+}
+.home-testimonials .review-loop-track.is-resetting { transition: none; }
+.home-testimonials .review-loop-track .reborn-review-card {
+  flex: 0 0 calc((100% - (var(--review-count) - 1) * 24px) / var(--review-count));
+  min-width: 0;
+  box-sizing: border-box;
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-testimonials .review-loop-track { transition-duration: 1ms; }
+}

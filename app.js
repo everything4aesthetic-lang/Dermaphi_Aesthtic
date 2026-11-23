@@ -1756,10 +1756,11 @@ function ThreeTestimonialsCanvas() {
 
 // Reborn-Inspired Luxury Client Testimonials Multi-Card Slider Carousel
 function HomeTestimonials() {
-  const [pageIndex, setPageIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(4);
   const [cardsPerPage, setCardsPerPage] = useState(3);
   const [isPaused, setIsPaused] = useState(false);
-  const [animating, setAnimating] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const touchStart = React.useRef(null);
 
   useEffect(() => {
@@ -1779,41 +1780,43 @@ function HomeTestimonials() {
   }, []);
 
   const totalCards = clientTestimonials.length;
-  const totalPages = Math.max(1, Math.ceil(totalCards / cardsPerPage));
-  const safePageIndex = Math.min(pageIndex, totalPages - 1);
+  const totalPages = totalCards;
+  const safePageIndex = ((pageIndex - totalCards) % totalCards + totalCards) % totalCards;
+  const visibleCards = [...clientTestimonials, ...clientTestimonials, ...clientTestimonials];
 
-  function goToPage(p) {
-    if (p === safePageIndex || animating) return;
-    setAnimating(true);
-    setTimeout(() => {
-      setPageIndex(p);
-      setAnimating(false);
-    }, 220);
+  function goToPage(p) { setPageIndex(totalCards + p); }
+  function move(step) { setPageIndex(curr => Math.max(0, Math.min(totalCards * 2, curr + step))); }
+  function finishSlide() {
+    if (pageIndex >= totalCards * 2 || pageIndex < totalCards) {
+      setIsResetting(true);
+      setPageIndex(totalCards + safePageIndex);
+    }
   }
-
-  function move(step) {
-    goToPage((safePageIndex + step + totalPages) % totalPages);
-  }
-
   useEffect(() => {
-    if (isPaused || totalPages <= 1 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const timer = setInterval(() => {
-      setPageIndex(curr => (curr + 1) % totalPages);
-    }, 6000);
+    if (pageIndex >= totalCards && pageIndex < totalCards * 2) return;
+    const timer = setTimeout(finishSlide, 750);
+    return () => clearTimeout(timer);
+  }, [pageIndex]);
+  useEffect(() => {
+    if (!isResetting) return;
+    let second;
+    const first = requestAnimationFrame(() => { second = requestAnimationFrame(() => setIsResetting(false)); });
+    return () => { cancelAnimationFrame(first); cancelAnimationFrame(second); };
+  }, [isResetting]);
+  useEffect(() => {
+    if (isPaused || isHovered || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = setInterval(() => setPageIndex(curr => curr + 1), 3500);
     return () => clearInterval(timer);
-  }, [isPaused, totalPages]);
-
-  const start = safePageIndex * cardsPerPage;
-  const visibleCards = clientTestimonials.slice(start, start + cardsPerPage);
+  }, [isPaused, isHovered]);
 
   return h('section', {
     className: 'home-testimonials modern-testimonials-section section',
     'aria-label': 'Client testimonials',
-    onMouseEnter: () => setIsPaused(true),
-    onMouseLeave: () => setIsPaused(false),
+    onMouseEnter: () => setIsHovered(true),
+    onMouseLeave: () => setIsHovered(false),
     onTouchStart: e => {
       touchStart.current = e.touches[0].clientX;
-      setIsPaused(true);
+      setIsHovered(true);
     },
     onTouchEnd: e => {
       if (touchStart.current !== null) {
@@ -1821,7 +1824,7 @@ function HomeTestimonials() {
         if (Math.abs(delta) > 40) move(delta < 0 ? 1 : -1);
         touchStart.current = null;
       }
-      setIsPaused(false);
+      setIsHovered(false);
     }
   },
     // Atmospheric animated ambient background
@@ -1865,12 +1868,14 @@ function HomeTestimonials() {
       // Reborn-Style Multi-Card Grid Carousel Stage
       h('div', { className: 'reborn-carousel-stage' },
         h('div', {
-          className: 'reborn-cards-grid' + (animating ? ' is-animating' : ''),
-          key: safePageIndex
+          className: 'reborn-cards-grid review-loop-track' + (isResetting ? ' is-resetting' : ''),
+          style: { '--review-index': pageIndex, '--review-count': cardsPerPage },
+          onTransitionEnd: e => { if (e.target === e.currentTarget) finishSlide(); }
         },
-          visibleCards.map(item =>
+          visibleCards.map((item, cardIndex) =>
             h('article', {
-              key: item.id,
+              key: item.id + '-' + cardIndex,
+              'aria-hidden': cardIndex < pageIndex || cardIndex >= pageIndex + cardsPerPage ? 'true' : undefined,
               className: 'reborn-review-card'
             },
               // Card Top Header: Stars & Verified Badge on left, Quote watermark on right

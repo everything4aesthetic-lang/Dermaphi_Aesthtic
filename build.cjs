@@ -59,7 +59,7 @@ for (const [page, [title, description]] of Object.entries(pages)) {
     setTimeout(finish, 2200);
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=20261123-thumbnails">
+<link rel="stylesheet" href="style.css?v=20261123-review-loop">
 <script defer src="assets/react.js"></script>
 <script defer src="assets/react-dom.js"></script>
 <script defer src="assets/gsap.min.js"></script>
@@ -67,7 +67,7 @@ for (const [page, [title, description]] of Object.entries(pages)) {
 <script defer src="assets/motion.js"></script>
 <script defer src="assets/lottie.min.js"></script>
 <script defer src="assets/social-animations.js"></script>
-<script defer src="app.js?v=20261123-thumbnails"></script>
+<script defer src="app.js?v=20261123-review-loop"></script>
 </head>
 <body>
 <div class="site-loader" aria-hidden="true">
